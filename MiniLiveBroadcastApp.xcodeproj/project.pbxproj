@@ -16,6 +16,8 @@
 		93015AD127AD39790061E9DC /* MiniLiveBroadcastAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015AD027AD39790061E9DC /* MiniLiveBroadcastAppTests.swift */; };
 		93015ADB27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ADA27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift */; };
 		93015ADD27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */; };
+		9388EF3B27B65989007000E4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3A27B65989007000E4 /* Utils.swift */; };
+		9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3C27B6632E007000E4 /* ScrollPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		93015AD627AD39790061E9DC /* MiniLiveBroadcastAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniLiveBroadcastAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93015ADA27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLiveBroadcastAppUITests.swift; sourceTree = "<group>"; };
 		93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLiveBroadcastAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9388EF3A27B65989007000E4 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		9388EF3C27B6632E007000E4 /* ScrollPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				93015AB927AD39780061E9DC /* AppDelegate.swift */,
 				93015ABB27AD39780061E9DC /* SceneDelegate.swift */,
 				93015ABD27AD39780061E9DC /* ViewController.swift */,
+				9388EF3C27B6632E007000E4 /* ScrollPageView.swift */,
+				9388EF3A27B65989007000E4 /* Utils.swift */,
 				93015ABF27AD39780061E9DC /* Main.storyboard */,
 				93015AC227AD39790061E9DC /* Assets.xcassets */,
 				93015AC427AD39790061E9DC /* LaunchScreen.storyboard */,
@@ -261,6 +267,8 @@
 				93015ABE27AD39780061E9DC /* ViewController.swift in Sources */,
 				93015ABA27AD39780061E9DC /* AppDelegate.swift in Sources */,
 				93015ABC27AD39780061E9DC /* SceneDelegate.swift in Sources */,
+				9388EF3B27B65989007000E4 /* Utils.swift in Sources */,
+				9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
