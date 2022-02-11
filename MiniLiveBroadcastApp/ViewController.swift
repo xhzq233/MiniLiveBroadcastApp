@@ -9,21 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let scrollView = ScrollPageView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenHeight))
-
+    let scrollView = ScrollPageView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenHeight)){ index in
+        ScrollPageCellConfigure(title: "Page\(index)", previewImage: "globe.americas", video: "")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-
         view.addSubview(scrollView)
-
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
+        
+        scrollView.setFilledConstraint(in: view)
     }
 }
