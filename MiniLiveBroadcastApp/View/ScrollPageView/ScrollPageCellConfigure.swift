@@ -12,6 +12,7 @@ typealias PageConfigureBuilder = (_ view: ScrollPageView, _ index: Int) -> Scrol
 
 
 struct ScrollPageCellConfigure {
+    //TODO: 
     let title: String
     let previewImage: String
     let video: String

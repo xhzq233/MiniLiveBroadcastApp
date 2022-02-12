@@ -10,13 +10,14 @@ import UIKit
 class ViewController: UIViewController {
 
     let scrollView = ScrollPageView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenHeight)) { _, index in
-        ScrollPageCellConfigure(title: "Page\(index)", previewImage: "globe.americas", video: "")
+            .instances.getElement(at: index) ?? .instances[0]
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
+        
+        // disable bar
+        navigationController?.setNavigationBarHidden(true, animated: false)
         view.addSubview(scrollView)
 
         scrollView.setFilledConstraint(in: view)
