@@ -8,11 +8,11 @@
 import Foundation
 
 typealias Pages = Array<ScrollPageViewCell>
-typealias PageConfigureBuilder = (_ index:Int)->ScrollPageCellConfigure
+typealias PageConfigureBuilder = (_ view: ScrollPageView, _ index: Int) -> ScrollPageCellConfigure
 
 
-struct ScrollPageCellConfigure{
-    let title:String
-    let previewImage:String
-    let video:String
+struct ScrollPageCellConfigure {
+    let title: String
+    let previewImage: String
+    let video: String
 }

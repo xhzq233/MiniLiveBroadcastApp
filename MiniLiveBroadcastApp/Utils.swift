@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 
+extension Int {
+    static let defaultCollectionPageCount = 3
+}
 
 extension Double {
     static let screenWidth = UIScreen.main.bounds.width
@@ -19,8 +22,12 @@ extension CGFloat {
     static let screenHeight = UIScreen.main.bounds.height
 }
 
+extension String {
+    static let PageCellIdentifier = "PageCell"
+}
+
 extension UIView {
-    func setFilledConstraint(in view:UIView){
+    func setFilledConstraint(in view: UIView) {
         activateConstraint([
             self.topAnchor.constraint(equalTo: view.topAnchor),
             self.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -28,8 +35,8 @@ extension UIView {
             self.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
     }
-    
-    func activateConstraint(_ constraints: [NSLayoutConstraint]){
+
+    func activateConstraint(_ constraints: [NSLayoutConstraint]) {
         self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(constraints)
     }
