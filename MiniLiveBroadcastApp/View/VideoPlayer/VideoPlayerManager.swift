@@ -6,28 +6,125 @@
 //
 
 import AVFoundation
+import UIKit
 
-struct VideoPlayerManager {
-    
-    let player = AVPlayer() //视频播放器
-    
-    var sourceURL:URL?                      //视频路径
-    var sourceScheme:String?                   //路径Scheme
-    var urlAsset:AVURLAsset?                //视频资源
-    var playerItem:AVPlayerItem?            //视频资源载体
-    var playerLayer:AVPlayerLayer = AVPlayerLayer.init()          //视频播放器图形化载体
-    var timeObserver:Any?                   //视频播放器周期性调用的观察者
-    
-    var data:Data?                          //视频缓冲数据
-    
-    var session:URLSession?                 //视频下载session
-    var task:URLSessionDataTask?            //视频下载NSURLSessionDataTask
-    
-    var response:HTTPURLResponse?           //视频下载请求响应
-    var pendingRequests = [AVAssetResourceLoadingRequest]()  //存储AVAssetResourceLoadingRequest的数组
-    
-    var cacheFileKey:String?                                 //缓存文件key值
-    var queryCacheOperation:Operation?                       //查找本地视频缓存数据的NSOperation
-    
-    var cancelLoadingQueue:DispatchQueue?
+protocol VideoPlayerDelegate: AnyObject {
+    // progress change
+    func onProgressUpdate(current: CGFloat, total: CGFloat)
+    // callback when status change
+    func onPlayItemStatusUpdate(status: VideoPlayStatus)
+}
+
+enum VideoPlayStatus: Equatable {
+    case loadingVideo //present preview time
+    case videoLoaded
+    case fail(err: String)
+}
+
+class VideoPlayerManager: NSObject {
+    private var asset: AVAsset?
+    private var player: AVQueuePlayer?
+    private var playerItem: AVPlayerItem?
+    private var playerLooper: AVPlayerLooper?
+
+    //avoid reference cycle
+    weak var delegate: VideoPlayerDelegate?
+
+    func setPlayerSourceUrl(url: String, playerLayer: AVPlayerLayer) {
+        if let sourceURL = URL(string: url) {
+            asset = AVAsset(url: sourceURL)
+            if let asset = asset {
+                playerItem = AVPlayerItem(asset: asset)
+                player = AVQueuePlayer(playerItem: playerItem)
+
+                player?.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.new, .initial, .old], context: nil)
+
+                if let player = player, let playerItem = playerItem {
+                    playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
+                }
+
+                playerLayer.player = player
+                addProgressObserver()
+            }
+
+        }
+    }
+
+    func disposePlayer() {
+        pause()
+        asset = nil
+        player = nil
+        playerItem = nil
+        playerLooper = nil
+    }
+
+
+    //to play or pause
+    func updatePlayerState() {
+        if player?.rate == 0 {
+            play()
+        } else {
+            player?.pause()
+        }
+    }
+
+    func play() {
+        player?.play()
+    }
+
+    /// pause with reset time line
+    func pause() {
+        player?.pause()
+        player?.seek(to: .zero)
+    }
+
+    var rate: CGFloat {
+        CGFloat(player?.rate ?? 0)
+    }
+    var timeObserverToken: Any?
+}
+
+extension VideoPlayerManager {
+
+    /// bugs?
+    /// player item wont notify state changing sometime
+    /// so i chose player
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+
+        if keyPath == #keyPath(AVPlayerItem.status) {
+            switch player?.status {
+            case .unknown:
+                // Player item is not yet ready.
+                delegate?.onPlayItemStatusUpdate(status: .loadingVideo)
+            case .readyToPlay:
+                // Player item is ready to play.
+                delegate?.onPlayItemStatusUpdate(status: .videoLoaded)
+            case .failed:
+                // Player item failed. See error.
+                delegate?.onPlayItemStatusUpdate(status: .fail(err: playerItem?.error?.localizedDescription ?? ""))
+            case .none:
+                delegate?.onPlayItemStatusUpdate(status: .fail(err: playerItem?.error?.localizedDescription ?? "none"))
+            @unknown default:
+                delegate?.onPlayItemStatusUpdate(status: .loadingVideo)
+            }
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
+    }
+
+    private func addProgressObserver() {
+        timeObserverToken = player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: .main) { [weak self] time in
+            let current = CMTimeGetSeconds(time)
+            let total = CMTimeGetSeconds(self?.playerItem?.duration ?? CMTime())
+            self?.delegate?.onProgressUpdate(current: CGFloat(current), total: CGFloat(total))
+        }
+    }
+
+    func removeObserver() {
+        playerItem?.removeObserver(self, forKeyPath: "status")
+        if let timeObserverToken = timeObserverToken {
+            player?.removeTimeObserver(timeObserverToken)
+            self.timeObserverToken = nil
+        }
+    }
 }

@@ -11,34 +11,52 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         itemCount
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        (tableView.dequeueReusableCell(withIdentifier: .PageCellIdentifier) as! ScrollPageViewCell)
-            .loadConfigure(config: pageConfigureBuilder(self, indexPath.item))
+        (tableView.dequeueReusableCell(withIdentifier: .PageCellIdentifier, for: indexPath) as! ScrollPageViewCell)
+                .setConfigure(config: pageConfigureBuilder(self, indexPath.item))
     }
-    
+
     //full screen item size
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.frame.height
     }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        .zero
+
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //MARK: video cancel
+        guard let cell = cell as? ScrollPageViewCell else {
+            return
+        }
+        cell.pauseVideo()
     }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        .zero
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //MARK: preview load
+        guard let cell = cell as? ScrollPageViewCell else {
+            return
+        }
+
+        cell.load()
+
+        // load video if scroll view not scrolling
+        // i.e the first initialize
+        if !self.isDragging {
+            print("loadVideo")
+            cell.loadVideo()
+        }
     }
 }
 
-extension ScrollPageView:UIScrollViewDelegate{
+extension ScrollPageView: UIScrollViewDelegate {
     //结束页面的滑动
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        //TODO: - video load
-    }
-    
-    //开始拖动时
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
+        //MARK: video load
+
+        guard let cell = self.visibleCells.first as? ScrollPageViewCell else {
+            return
+        }
+
+        cell.loadVideo()
     }
 }
 
@@ -46,6 +64,7 @@ class ScrollPageView: UITableView {
 
     var itemCount: Int = .defaultPageCount
 
+    //MARK: load more
     func loadmore() {
         itemCount += .defaultPageCount
         reloadData()
@@ -62,6 +81,7 @@ class ScrollPageView: UITableView {
 
     private let pageConfigureBuilder: PageConfigureBuilder
 
+    //MARK: custom
     init(frame: CGRect, pageConfigureBuilder: @escaping PageConfigureBuilder) {
         self.pageConfigureBuilder = pageConfigureBuilder
 
@@ -81,10 +101,7 @@ class ScrollPageView: UITableView {
         register(ScrollPageViewCell.self, forCellReuseIdentifier: .PageCellIdentifier)
     }
 
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
