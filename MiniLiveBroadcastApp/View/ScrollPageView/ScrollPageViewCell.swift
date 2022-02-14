@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 /// SinglePage in ScrollView
 class ScrollPageViewCell: UITableViewCell {
@@ -73,7 +74,7 @@ class ScrollPageViewCell: UITableViewCell {
         //player view
         contentView.addSubview(playerView)
         playerView.setFilledConstraint(in: contentView)
-
+        
         //title
         contentView.addSubview(title)
         title.numberOfLines = 1
@@ -103,10 +104,6 @@ class ScrollPageViewCell: UITableViewCell {
 
     @objc func pressMore() {
 
-    }
-
-    @objc func pressMore(){
-        
     }
     
     required init?(coder: NSCoder) {
