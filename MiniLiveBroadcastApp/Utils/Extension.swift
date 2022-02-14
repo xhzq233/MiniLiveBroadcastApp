@@ -20,6 +20,16 @@ extension UIView {
     }
 }
 
+extension UIViewController {
+    func embed(_ viewController:UIViewController, inView view:UIView){
+        viewController.willMove(toParent: self)
+        viewController.view.frame = view.bounds
+        view.addSubview(viewController.view)
+        self.addChild(viewController)
+        viewController.didMove(toParent: self)
+    }
+}
+
 extension UIImageView {
     func loadUrlImage(from str:String, completion: (()->Void)? = nil)  {
         guard let url = URL(string: str) else { return }

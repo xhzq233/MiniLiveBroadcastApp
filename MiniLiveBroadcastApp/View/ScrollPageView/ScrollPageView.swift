@@ -64,7 +64,10 @@ extension ScrollPageView: UIScrollViewDelegate {
 class ScrollPageView: UITableView {
 
     var itemCount: Int = .defaultPageCount
-
+    
+    //MARK: viewModel
+    let publicBoardViewModel = PublicBoardViewModel()
+    
     //MARK: load more
     func loadmore() {
         itemCount += .defaultPageCount

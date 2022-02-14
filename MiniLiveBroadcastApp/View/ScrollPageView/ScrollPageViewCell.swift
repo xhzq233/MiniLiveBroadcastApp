@@ -28,10 +28,10 @@ class ScrollPageViewCell: UITableViewCell {
         playerView.disposePlayer()
     }
 
-    deinit {
-        print("deinit!! \(config.title)")
-        playerView.disposePlayer()
-    }
+//    deinit {
+//        print("deinit!! \(config.title)")
+//        playerView.disposePlayer()
+//    }
 
     func pauseVideo() {
         print("\(config.title) pauseVideo")
@@ -62,7 +62,7 @@ class ScrollPageViewCell: UITableViewCell {
         }
     }
 
-    /// make textcolor inherited from tint color
+    /// make text color inherited from tint color
     override func tintColorDidChange() {
         title.textColor = tintColor
     }

@@ -26,6 +26,7 @@ extension String {
     static let LoadingTitle = "Coming Soon..."
     static let LoadingSystemImage = "hourglass"
 
+    static let PublicBoardTextFieldHint = "说点什么..."
 }
 
 extension ScrollPageCellConfigure {

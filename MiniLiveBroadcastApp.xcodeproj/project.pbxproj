@@ -10,13 +10,14 @@
 		93015ABA27AD39780061E9DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015AB927AD39780061E9DC /* AppDelegate.swift */; };
 		93015ABC27AD39780061E9DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ABB27AD39780061E9DC /* SceneDelegate.swift */; };
 		93015ABE27AD39780061E9DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ABD27AD39780061E9DC /* ViewController.swift */; };
-		93015AC127AD39780061E9DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93015ABF27AD39780061E9DC /* Main.storyboard */; };
 		93015AC327AD39790061E9DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93015AC227AD39790061E9DC /* Assets.xcassets */; };
 		93015AC627AD39790061E9DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93015AC427AD39790061E9DC /* LaunchScreen.storyboard */; };
 		93015AD127AD39790061E9DC /* MiniLiveBroadcastAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015AD027AD39790061E9DC /* MiniLiveBroadcastAppTests.swift */; };
 		93015ADB27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ADA27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift */; };
 		93015ADD27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */; };
 		931457C427BA3FC6007F2EAA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 931457C327BA3FC6007F2EAA /* SnapKit */; };
+		931457CD27BA463D007F2EAA /* PublicBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457CC27BA463D007F2EAA /* PublicBoardView.swift */; };
+		931457CF27BA4AF3007F2EAA /* PublicBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */; };
 		9388EF3B27B65989007000E4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3A27B65989007000E4 /* Extension.swift */; };
 		9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3C27B6632E007000E4 /* ScrollPageView.swift */; };
 		9388EF4327B6D4F9007000E4 /* ScrollPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF4227B6D4F9007000E4 /* ScrollPageViewCell.swift */; };
@@ -50,7 +51,6 @@
 		93015AB927AD39780061E9DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93015ABB27AD39780061E9DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		93015ABD27AD39780061E9DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		93015AC027AD39780061E9DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93015AC227AD39790061E9DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93015AC527AD39790061E9DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93015AC727AD39790061E9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +59,8 @@
 		93015AD627AD39790061E9DC /* MiniLiveBroadcastAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniLiveBroadcastAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93015ADA27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLiveBroadcastAppUITests.swift; sourceTree = "<group>"; };
 		93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLiveBroadcastAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		931457CC27BA463D007F2EAA /* PublicBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicBoardView.swift; sourceTree = "<group>"; };
+		931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicBoardViewModel.swift; sourceTree = "<group>"; };
 		9388EF3A27B65989007000E4 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9388EF3C27B6632E007000E4 /* ScrollPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageView.swift; sourceTree = "<group>"; };
 		9388EF4227B6D4F9007000E4 /* ScrollPageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageViewCell.swift; sourceTree = "<group>"; };
@@ -124,7 +126,6 @@
 				93015ABB27AD39780061E9DC /* SceneDelegate.swift */,
 				93015ABD27AD39780061E9DC /* ViewController.swift */,
 				9388EF4727B78B79007000E4 /* Utils */,
-				93015ABF27AD39780061E9DC /* Main.storyboard */,
 				93015AC227AD39790061E9DC /* Assets.xcassets */,
 				93015AC427AD39790061E9DC /* LaunchScreen.storyboard */,
 				93015AC727AD39790061E9DC /* Info.plist */,
@@ -147,6 +148,15 @@
 				93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */,
 			);
 			path = MiniLiveBroadcastAppUITests;
+			sourceTree = "<group>";
+		};
+		931457CB27BA4633007F2EAA /* PublicBoardView */ = {
+			isa = PBXGroup;
+			children = (
+				931457CC27BA463D007F2EAA /* PublicBoardView.swift */,
+				931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */,
+			);
+			path = PublicBoardView;
 			sourceTree = "<group>";
 		};
 		9388EF4427B6D508007000E4 /* ScrollPageView */ = {
@@ -173,6 +183,7 @@
 			children = (
 				B30659F627BA56E3001827C2 /* GiftsCapsuleView.swift */,
 				B30659F827BA56EB001827C2 /* GiftCapsuleView */,
+				931457CB27BA4633007F2EAA /* PublicBoardView */,
 				B3A7FB1A27B8E4B00067CC0C /* ThumbsUpView */,
 				9388EF4F27B7C403007000E4 /* VideoPlayer */,
 				9388EF4427B6D508007000E4 /* ScrollPageView */,
@@ -316,7 +327,6 @@
 			files = (
 				93015AC627AD39790061E9DC /* LaunchScreen.storyboard in Resources */,
 				93015AC327AD39790061E9DC /* Assets.xcassets in Resources */,
-				93015AC127AD39780061E9DC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931457CF27BA4AF3007F2EAA /* PublicBoardViewModel.swift in Sources */,
 				93015ABE27AD39780061E9DC /* ViewController.swift in Sources */,
 				93015ABA27AD39780061E9DC /* AppDelegate.swift in Sources */,
 				9388EF5127B7C419007000E4 /* VideoPlayerManager.swift in Sources */,
@@ -349,6 +360,7 @@
 				9388EF3B27B65989007000E4 /* Extension.swift in Sources */,
 				9388EF4E27B7BA4A007000E4 /* VideoPlayerView.swift in Sources */,
 				9388EF4327B6D4F9007000E4 /* ScrollPageViewCell.swift in Sources */,
+				931457CD27BA463D007F2EAA /* PublicBoardView.swift in Sources */,
 				9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */,
 				B3A7FB1927B8DAF10067CC0C /* ThumbsUpView.swift in Sources */,
 				B30659F727BA56E3001827C2 /* GiftsCapsuleView.swift in Sources */,
@@ -389,14 +401,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		93015ABF27AD39780061E9DC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				93015AC027AD39780061E9DC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		93015AC427AD39790061E9DC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -536,7 +540,6 @@
 				INFOPLIST_FILE = MiniLiveBroadcastApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -564,7 +567,6 @@
 				INFOPLIST_FILE = MiniLiveBroadcastApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

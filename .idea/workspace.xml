@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9ec350c4-e0bb-4191-98b4-c96da85b55ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniLiveBroadcastApp.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniLiveBroadcastApp/Utils/Constant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp/Utils/Constant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniLiveBroadcastApp/Utils/Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp/Utils/Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniLiveBroadcastApp/View/ScrollPageView/ScrollPageView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp/View/ScrollPageView/ScrollPageView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniLiveBroadcastApp/View/ScrollPageView/ScrollPageViewCell.swift" beforeDir="false" afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp/View/ScrollPageView/ScrollPageViewCell.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniLiveBroadcastApp/View/VideoPlayer/VideoPlayerManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp/View/VideoPlayer/VideoPlayerManager.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniLiveBroadcastApp/View/VideoPlayer/VideoPlayerView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp/View/VideoPlayer/VideoPlayerView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniLiveBroadcastApp/ViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/MiniLiveBroadcastApp/ViewController.swift" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="AppCode" />
+    <option name="majorVersion" value="2021" />
+    <option name="minorVersion" value="3.2" />
+  </component>
+  <component name="ProjectId" id="24plJTAVAD8l0JOB0Ex1z6yMQj1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9ec350c4-e0bb-4191-98b4-c96da85b55ad" name="Changes" comment="" />
+      <created>1644335339845</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644335339845</updated>
+      <workItem from="1644335341353" duration="1332000" />
+      <workItem from="1644566792798" duration="2208000" />
+      <workItem from="1644642057117" duration="5178000" />
+      <workItem from="1644769040738" duration="58000" />
+      <workItem from="1644825664297" duration="49000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
