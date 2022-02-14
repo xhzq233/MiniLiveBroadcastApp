@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     let scrollView = ScrollPageView(frame: .zero) { _, index in
         .instances.getElement(at: index) ?? .instances[0]
@@ -21,5 +21,7 @@ class ViewController: UIViewController {
         view.addSubview(scrollView)
 
         scrollView.setFilledConstraint(in: view)
+        
+        scrollView.setPublicBoard(rootVC: self)
     }
 }

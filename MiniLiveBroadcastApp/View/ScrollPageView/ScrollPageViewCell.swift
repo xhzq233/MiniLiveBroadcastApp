@@ -6,9 +6,19 @@
 //
 
 import UIKit
-import SwiftUI
 
 /// SinglePage in ScrollView
+///
+/// once cell appear,
+/// first it will load default config, like title = "Coming Soon...",
+/// then load preview image and title etc.
+/// so put that  `loadPreview` in `func tableView(_ tableView:, willDisplay:)`,
+/// another thing to note is that it need to load video besides load preview when view first appear,
+/// so judge the `tableView.isDragging` when will display.
+///
+/// once scroll view didDecelerating, we need start load video and load `PublicBoardView` in cell
+///
+/// once cell `endDisplay`, pause its video , seek it to zero and remove `PublicBoardView`
 class ScrollPageViewCell: UITableViewCell {
 
     private var config: ScrollPageCellConfigure = .defaultConfigure
@@ -43,7 +53,7 @@ class ScrollPageViewCell: UITableViewCell {
     }
 
     /// load preview image and title
-    func load() {
+    func loadPreview() {
         playerView.showPreview(with: config.previewImage)
         self.title.text = self.config.title
     }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		93015ABA27AD39780061E9DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015AB927AD39780061E9DC /* AppDelegate.swift */; };
 		93015ABC27AD39780061E9DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ABB27AD39780061E9DC /* SceneDelegate.swift */; };
-		93015ABE27AD39780061E9DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ABD27AD39780061E9DC /* ViewController.swift */; };
+		93015ABE27AD39780061E9DC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ABD27AD39780061E9DC /* MainViewController.swift */; };
 		93015AC327AD39790061E9DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93015AC227AD39790061E9DC /* Assets.xcassets */; };
 		93015AC627AD39790061E9DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93015AC427AD39790061E9DC /* LaunchScreen.storyboard */; };
 		93015AD127AD39790061E9DC /* MiniLiveBroadcastAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015AD027AD39790061E9DC /* MiniLiveBroadcastAppTests.swift */; };
@@ -50,7 +50,7 @@
 		93015AB627AD39780061E9DC /* MiniLiveBroadcastApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniLiveBroadcastApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93015AB927AD39780061E9DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93015ABB27AD39780061E9DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		93015ABD27AD39780061E9DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		93015ABD27AD39780061E9DC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		93015AC227AD39790061E9DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93015AC527AD39790061E9DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93015AC727AD39790061E9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				9388EF4A27B7B481007000E4 /* View */,
 				93015AB927AD39780061E9DC /* AppDelegate.swift */,
 				93015ABB27AD39780061E9DC /* SceneDelegate.swift */,
-				93015ABD27AD39780061E9DC /* ViewController.swift */,
+				93015ABD27AD39780061E9DC /* MainViewController.swift */,
 				9388EF4727B78B79007000E4 /* Utils */,
 				93015AC227AD39790061E9DC /* Assets.xcassets */,
 				93015AC427AD39790061E9DC /* LaunchScreen.storyboard */,
@@ -159,6 +159,14 @@
 			path = PublicBoardView;
 			sourceTree = "<group>";
 		};
+		931457D127BA8525007F2EAA /* GiftsCapsuleView */ = {
+			isa = PBXGroup;
+			children = (
+				B30659F627BA56E3001827C2 /* GiftsCapsuleView.swift */,
+			);
+			path = GiftsCapsuleView;
+			sourceTree = "<group>";
+		};
 		9388EF4427B6D508007000E4 /* ScrollPageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,8 +189,7 @@
 		9388EF4A27B7B481007000E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B30659F627BA56E3001827C2 /* GiftsCapsuleView.swift */,
-				B30659F827BA56EB001827C2 /* GiftCapsuleView */,
+				931457D127BA8525007F2EAA /* GiftsCapsuleView */,
 				931457CB27BA4633007F2EAA /* PublicBoardView */,
 				B3A7FB1A27B8E4B00067CC0C /* ThumbsUpView */,
 				9388EF4F27B7C403007000E4 /* VideoPlayer */,
@@ -198,13 +205,6 @@
 				9388EF5027B7C419007000E4 /* VideoPlayerManager.swift */,
 			);
 			path = VideoPlayer;
-			sourceTree = "<group>";
-		};
-		B30659F827BA56EB001827C2 /* GiftCapsuleView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GiftCapsuleView;
 			sourceTree = "<group>";
 		};
 		B3A7FB1A27B8E4B00067CC0C /* ThumbsUpView */ = {
@@ -352,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				931457CF27BA4AF3007F2EAA /* PublicBoardViewModel.swift in Sources */,
-				93015ABE27AD39780061E9DC /* ViewController.swift in Sources */,
+				93015ABE27AD39780061E9DC /* MainViewController.swift in Sources */,
 				93015ABA27AD39780061E9DC /* AppDelegate.swift in Sources */,
 				9388EF5127B7C419007000E4 /* VideoPlayerManager.swift in Sources */,
 				93015ABC27AD39780061E9DC /* SceneDelegate.swift in Sources */,

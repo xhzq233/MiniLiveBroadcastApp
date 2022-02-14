@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,6 +30,7 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
             return
         }
         cell.pauseVideo()
+        hideBoard()
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -37,13 +39,14 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
             return
         }
 
-        cell.load()
+        cell.loadPreview()
 
         // load video if scroll view not scrolling
         // i.e the first initialize
         if !self.isDragging {
             print("loadVideo")
             cell.loadVideo()
+            showBoard(in: cell.contentView)
         }
     }
 }
@@ -58,6 +61,7 @@ extension ScrollPageView: UIScrollViewDelegate {
         }
 
         cell.loadVideo()
+        showBoard(in: cell.contentView)
     }
 }
 
@@ -65,8 +69,30 @@ class ScrollPageView: UITableView {
 
     var itemCount: Int = .defaultPageCount
     
-    //MARK: viewModel
+    //MARK: publicBoard & viewModel
     let publicBoardViewModel = PublicBoardViewModel()
+    var publicBoardView:UIViewController!
+    
+    func setPublicBoard(rootVC:UIViewController) {
+        publicBoardView = UIHostingController(rootView: PublicBoardView(model: publicBoardViewModel))
+        rootVC.embed(publicBoardView)
+        publicBoardView.view.backgroundColor = .clear
+    }
+    
+    func showBoard(in view:UIView) {
+        publicBoardView.view.removeFromSuperview()//make sure...
+        
+        view.addSubview(publicBoardView.view)
+        publicBoardView.view.frame = view.bounds
+    }
+    
+    func hideBoard() {
+        publicBoardView.view.removeFromSuperview()
+    }
+    
+    deinit {
+        publicBoardView.removeFromParent()
+    }
     
     //MARK: load more
     func loadmore() {
