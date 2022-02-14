@@ -24,6 +24,7 @@
 		9388EF4927B78B91007000E4 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF4827B78B91007000E4 /* Constant.swift */; };
 		9388EF4E27B7BA4A007000E4 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF4D27B7BA4A007000E4 /* VideoPlayerView.swift */; };
 		9388EF5127B7C419007000E4 /* VideoPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF5027B7C419007000E4 /* VideoPlayerManager.swift */; };
+		B3A7FB1927B8DAF10067CC0C /* ThumbsUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A7FB1827B8DAF10067CC0C /* ThumbsUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		9388EF4827B78B91007000E4 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9388EF4D27B7BA4A007000E4 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		9388EF5027B7C419007000E4 /* VideoPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerManager.swift; sourceTree = "<group>"; };
+		B3A7FB1827B8DAF10067CC0C /* ThumbsUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThumbsUpView.swift; path = MiniLiveBroadcastApp/View/ThumbsUpView/ThumbsUpView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		9388EF4A27B7B481007000E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B3A7FB1A27B8E4B00067CC0C /* ThumbsUpView */,
 				9388EF4F27B7C403007000E4 /* VideoPlayer */,
 				9388EF4427B6D508007000E4 /* ScrollPageView */,
 			);
@@ -180,6 +183,14 @@
 				9388EF5027B7C419007000E4 /* VideoPlayerManager.swift */,
 			);
 			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		B3A7FB1A27B8E4B00067CC0C /* ThumbsUpView */ = {
+			isa = PBXGroup;
+			children = (
+				B3A7FB1827B8DAF10067CC0C /* ThumbsUpView.swift */,
+			);
+			path = ThumbsUpView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +339,7 @@
 				9388EF4E27B7BA4A007000E4 /* VideoPlayerView.swift in Sources */,
 				9388EF4327B6D4F9007000E4 /* ScrollPageViewCell.swift in Sources */,
 				9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */,
+				B3A7FB1927B8DAF10067CC0C /* ThumbsUpView.swift in Sources */,
 				9388EF4627B6D533007000E4 /* ScrollPageCellConfigure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

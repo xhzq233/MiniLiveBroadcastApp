@@ -105,6 +105,10 @@ class ScrollPageViewCell: UITableViewCell {
 
     }
 
+    @objc func pressMore(){
+        
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
