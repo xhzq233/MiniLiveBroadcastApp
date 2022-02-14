@@ -50,3 +50,9 @@ extension ScrollPageCellConfigure {
         ScrollPageCellConfigure(title: "Video \(i)", previewImage: titokAvatar, video: videos.randomElement() ?? localVideo)
     }
 }
+
+struct UserConfig {
+    var userId: Int
+    var userName: String
+    var userAvaterUrl: String
+}
