@@ -15,6 +15,7 @@ class VideoPlayerView: UIView {
         layer.videoGravity = .resizeAspectFill //fill the screen
         return layer
     }()
+
     //default presenting image when view appear
     private let preview = UIImageView(image: UIImage(systemName: .LoadingSystemImage))
     private(set) var status: VideoPlayStatus = .loadingVideo
@@ -24,7 +25,7 @@ class VideoPlayerView: UIView {
     }
 
     var isPlaying: Bool {
-        videoManager.rate != 0
+        videoManager.rate != 0 && status == .videoLoaded
     }
 
     func loadVideoSource(with url: String) {
@@ -36,8 +37,12 @@ class VideoPlayerView: UIView {
         videoManager.play()
     }
 
+    /// pauseVideo if video is playing or is loading
+    /// i.e ur video is loading while it isnt playing, causing that multi videos playing at a same time
     func pause() {
-        videoManager.pause()
+        if isPlaying || status == .loadingVideo {
+            videoManager.pause()
+        }
     }
 
     func disposePlayer() {

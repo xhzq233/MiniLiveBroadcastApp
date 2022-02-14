@@ -16,6 +16,7 @@
 		93015AD127AD39790061E9DC /* MiniLiveBroadcastAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015AD027AD39790061E9DC /* MiniLiveBroadcastAppTests.swift */; };
 		93015ADB27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ADA27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift */; };
 		93015ADD27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */; };
+		931457C427BA3FC6007F2EAA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 931457C327BA3FC6007F2EAA /* SnapKit */; };
 		9388EF3B27B65989007000E4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3A27B65989007000E4 /* Extension.swift */; };
 		9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3C27B6632E007000E4 /* ScrollPageView.swift */; };
 		9388EF4327B6D4F9007000E4 /* ScrollPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF4227B6D4F9007000E4 /* ScrollPageViewCell.swift */; };
@@ -70,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931457C427BA3FC6007F2EAA /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +199,7 @@
 			);
 			name = MiniLiveBroadcastApp;
 			packageProductDependencies = (
+				931457C327BA3FC6007F2EAA /* SnapKit */,
 			);
 			productName = MiniLiveBroadcastApp;
 			productReference = 93015AB627AD39780061E9DC /* MiniLiveBroadcastApp.app */;
@@ -271,6 +274,7 @@
 			);
 			mainGroup = 93015AAD27AD39770061E9DC;
 			packageReferences = (
+				931457C227BA3FC6007F2EAA /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 93015AB727AD39780061E9DC /* Products */;
 			projectDirPath = "";
@@ -668,6 +672,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		931457C227BA3FC6007F2EAA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		931457C327BA3FC6007F2EAA /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 931457C227BA3FC6007F2EAA /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 93015AAE27AD39770061E9DC /* Project object */;
 }

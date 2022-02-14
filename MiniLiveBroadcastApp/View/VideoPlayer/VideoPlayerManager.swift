@@ -56,8 +56,8 @@ class VideoPlayerManager: NSObject {
         player = nil
         playerItem = nil
         playerLooper = nil
+        removeObserver()
     }
-
 
     //to play or pause
     func updatePlayerState() {

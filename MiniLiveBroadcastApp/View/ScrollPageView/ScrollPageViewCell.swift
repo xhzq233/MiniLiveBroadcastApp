@@ -32,18 +32,13 @@ class ScrollPageViewCell: UITableViewCell {
         playerView.disposePlayer()
     }
 
-    /// pauseVideo if cell video is playing or is loading video
-    /// i.e ur video is loading while it isnt playing, causing that multi videos playing at a same time
     func pauseVideo() {
-        if isPlaying || playerView.status == .loadingVideo {
-            print("\(config.title) pauseVideo")
-            playerView.pause()
-        }
+        print("\(config.title) pauseVideo")
+        playerView.pause()
     }
 
-    func setConfigure(config: ScrollPageCellConfigure) -> Self {
+    func setConfigure(config: ScrollPageCellConfigure) {
         self.config = config
-        return self
     }
 
     /// load preview image and title
@@ -86,22 +81,22 @@ class ScrollPageViewCell: UITableViewCell {
         title.font = .systemFont(ofSize: 30)
         title.textAlignment = .center
 
-        title.activateConstraint([
-            title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: .topPadding),
-            title.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            title.rightAnchor.constraint(equalTo: contentView.rightAnchor)
-        ])
+        title.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(CGFloat.topPadding)
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+        }
 
         //more view
         contentView.addSubview(more)
         more.contentMode = .scaleAspectFit
         more.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pressMore)))
-        more.activateConstraint([
-            more.topAnchor.constraint(equalTo: contentView.topAnchor, constant: .topPadding),
-            more.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: .horizontalPadding * (-1)),
-            more.heightAnchor.constraint(equalToConstant: .iconSize),
-            more.widthAnchor.constraint(equalToConstant: .iconSize)
-        ])
+
+        more.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(CGFloat.topPadding)
+            $0.right.equalToSuperview().offset(-1 * CGFloat.horizontalPadding)
+            $0.size.equalTo(CGFloat.iconSize)
+        }
 
         title.text = .LoadingTitle
     }

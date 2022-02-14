@@ -9,13 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let scrollView = ScrollPageView(frame: CGRect(x: 0, y: 0, width: .screenWidth, height: .screenHeight)) { _, index in
-            .instances.getElement(at: index) ?? .instances[0]
+    let scrollView = ScrollPageView(frame: .zero) { _, index in
+        .instances.getElement(at: index) ?? .instances[0]
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // disable bar
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.addSubview(scrollView)

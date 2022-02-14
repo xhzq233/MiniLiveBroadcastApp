@@ -13,8 +13,9 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        (tableView.dequeueReusableCell(withIdentifier: .PageCellIdentifier, for: indexPath) as! ScrollPageViewCell)
-                .setConfigure(config: pageConfigureBuilder(self, indexPath.item))
+        let cell = (tableView.dequeueReusableCell(withIdentifier: .PageCellIdentifier, for: indexPath) as! ScrollPageViewCell)
+        cell.setConfigure(config: pageConfigureBuilder(self, indexPath.item))
+        return cell
     }
 
     //full screen item size

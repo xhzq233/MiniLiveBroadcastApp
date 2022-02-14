@@ -7,21 +7,16 @@
 
 import Foundation
 import UIKit
-
+import SnapKit
 
 extension UIView {
     func setFilledConstraint(in view: UIView) {
-        activateConstraint([
-            self.topAnchor.constraint(equalTo: view.topAnchor),
-            self.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            self.leftAnchor.constraint(equalTo: view.leftAnchor),
-            self.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
-    }
-
-    func activateConstraint(_ constraints: [NSLayoutConstraint]) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(constraints)
+        self.snp.makeConstraints{
+            $0.top.equalTo(view)
+            $0.left.equalTo(view)
+            $0.right.equalTo(view)
+            $0.bottom.equalTo(view)
+        }
     }
 }
 
@@ -40,7 +35,6 @@ extension UIImageView {
         }.resume()
     }
 }
-
 
 extension Collection{
     //be like getOrNull()
