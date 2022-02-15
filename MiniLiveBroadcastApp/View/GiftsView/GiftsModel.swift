@@ -21,15 +21,11 @@ struct GiftsModel<GiftContent> where GiftContent: Equatable {
     // 发送礼物
     mutating func sendAGift(createGiftContent: (Int) -> GiftContent) {
         let content = createGiftContent(gifts.count)
-        gifts.append(Gift(isAlive: isTheFirstTwoGifts(gifts.count), content: content, id: gifts.count))
-        print(gifts.count)
-    }
-    
-    mutating func isTheFirstTwoGifts(_ count: Int) -> Bool {
-        if count >= 2 {
-            return false
+        let endIndex = gifts.endIndex
+        if gifts.count > 1 {
+            gifts[endIndex - 2].isAlive = false
         }
-        return true
+        gifts.append(Gift(isAlive: true, content: content, id: gifts.count))
     }
     
     struct Gift: Identifiable {
@@ -42,5 +38,7 @@ struct GiftsModel<GiftContent> where GiftContent: Equatable {
 }
 
 struct User {
-    
+    // TODO: 头像图片
+    var profilePicture: String = "tiktok"
+    var userName: String = "NaNName"
 }
