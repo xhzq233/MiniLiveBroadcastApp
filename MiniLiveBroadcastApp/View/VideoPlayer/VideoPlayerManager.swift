@@ -16,6 +16,7 @@ protocol VideoPlayerDelegate: AnyObject {
 }
 
 enum VideoPlayStatus: Equatable {
+    case none //not start yet
     case loadingVideo //present preview time
     case videoLoaded
     case fail(err: String)
@@ -26,11 +27,25 @@ class VideoPlayerManager: NSObject {
     private var player: AVQueuePlayer?
     private var playerItem: AVPlayerItem?
     private var playerLooper: AVPlayerLooper?
-
+    let playerLayer: AVPlayerLayer = {
+        let layer = AVPlayerLayer()
+        layer.videoGravity = .resizeAspectFill //fill the screen
+        return layer
+    }()
+    
+    private(set) var status:VideoPlayStatus = .none
+    
+    var isPlaying: Bool {
+        rate != 0 && status == .videoLoaded
+    }
+    
     //avoid reference cycle
     weak var delegate: VideoPlayerDelegate?
 
-    func setPlayerSourceUrl(url: String, playerLayer: AVPlayerLayer) {
+    func setPlayerSourceUrl(url: String) {
+        
+        guard status == .none && !isPlaying else { return }
+        
         if let sourceURL = URL(string: url) {
             asset = AVAsset(url: sourceURL)
             if let asset = asset {
@@ -51,29 +66,39 @@ class VideoPlayerManager: NSObject {
     }
 
     func disposePlayer() {
-        pause()
+        player?.pause()
+        status = .none
         asset = nil
         player = nil
         playerItem = nil
+        playerLayer.player = nil
         playerLooper = nil
         removeObserver()
     }
 
-    //to play or pause
+    /// to play or pause
     func updatePlayerState() {
         if player?.rate == 0 {
-            play()
+            player?.play()
         } else {
             player?.pause()
         }
     }
 
     func play() {
-        player?.play()
+        if !isPlaying {
+            player?.play()
+        }
     }
 
     /// pause with reset time line
-    func pause() {
+    ///
+    /// pauseVideo if video is playing or is loading
+    /// i.e ur video is loading while it isnt playing, causing that multi videos playing at a same time
+    func pauseAndSeek2Zero() {
+//        if isPlaying || status == .loadingVideo {
+//            videoManager.pauseAndSeek2Zero()
+//        }
         player?.pause()
         player?.seek(to: .zero)
     }
@@ -92,21 +117,24 @@ extension VideoPlayerManager {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 
         if keyPath == #keyPath(AVPlayerItem.status) {
+            let status:VideoPlayStatus
             switch player?.status {
-            case .unknown:
-                // Player item is not yet ready.
-                delegate?.onPlayItemStatusUpdate(status: .loadingVideo)
-            case .readyToPlay:
-                // Player item is ready to play.
-                delegate?.onPlayItemStatusUpdate(status: .videoLoaded)
-            case .failed:
-                // Player item failed. See error.
-                delegate?.onPlayItemStatusUpdate(status: .fail(err: playerItem?.error?.localizedDescription ?? ""))
-            case .none:
-                delegate?.onPlayItemStatusUpdate(status: .fail(err: playerItem?.error?.localizedDescription ?? "none"))
-            @unknown default:
-                delegate?.onPlayItemStatusUpdate(status: .loadingVideo)
+                case .unknown:
+                    // Player item is not yet ready.
+                    status = .loadingVideo
+                case .readyToPlay:
+                    // Player item is ready to play.
+                    status = .videoLoaded
+                case .failed:
+                    status = .fail(err: player?.error?.localizedDescription ?? "unknown")
+                    // Player item failed. See error.
+                case .none:
+                    status = .none
+                @unknown default:
+                    status = .none
             }
+            self.status = status
+            delegate?.onPlayItemStatusUpdate(status: status)
         } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }

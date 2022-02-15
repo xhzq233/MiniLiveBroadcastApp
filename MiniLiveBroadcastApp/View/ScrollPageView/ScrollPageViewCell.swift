@@ -22,30 +22,26 @@ import SnapKit
 /// once cell `endDisplay`, pause its video , seek it to zero and remove `PublicBoardView`
 class ScrollPageViewCell: UITableViewCell {
 
-    private var config: ScrollPageCellConfigure = .defaultConfigure
+    var config: ScrollPageCellConfigure = .defaultConfigure
 
     private let title: UILabel = UILabel(frame: .zero)
-    private let playerView: VideoPlayerView = VideoPlayerView()
-
-    var isPlaying: Bool {
-        playerView.isPlaying
-    }
-
+    
+    //default presenting image when view appear
+    private let preview = UIImageView(image: UIImage(systemName: .LoadingSystemImage))
+    
     /// dispose player before reuse
     override func prepareForReuse() {
         super.prepareForReuse()
         title.text = .LoadingTitle
-        playerView.disposePlayer()
+        preview.image = UIImage(systemName: .LoadingSystemImage)
     }
 
-//    deinit {
-//        print("deinit!! \(config.title)")
-//        playerView.disposePlayer()
-//    }
+    deinit {
+        print("deinit!! \(config.title)")
+    }
 
-    func pauseVideo() {
-        print("\(config.title) pauseVideo")
-        playerView.pause()
+    func showPreview(with url: String) {
+        preview.loadUrlImage(from: url)
     }
 
     func setConfigure(config: ScrollPageCellConfigure) {
@@ -54,22 +50,8 @@ class ScrollPageViewCell: UITableViewCell {
 
     /// load preview image and title
     func loadPreview() {
-        playerView.showPreview(with: config.previewImage)
+        showPreview(with: config.previewImage)
         self.title.text = self.config.title
-    }
-
-    /// loadVideo if cell not playing
-    func loadVideo() {
-        if !isPlaying {
-            if playerView.status == .videoLoaded {
-                //if already loaded, just play
-                print("\(config.title) playVideo")
-                playerView.play()
-            } else {
-                print("\(config.title) loadVideoSource")
-                playerView.loadVideoSource(with: config.video)
-            }
-        }
     }
 
     /// make `text color` inherited from `tint color`
@@ -80,10 +62,18 @@ class ScrollPageViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .black
-
-        //player view
-        contentView.addSubview(playerView)
-        playerView.setFilledConstraint(in: contentView)
+        
+        // preview
+        contentView.addSubview(preview)
+        preview.contentMode = .scaleAspectFit
+        
+        // add blurEffect to preview
+        let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThinMaterialDark))
+        blurEffectView.frame = preview.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        preview.addSubview(blurEffectView)
+        
+        preview.setFilledConstraint(in: contentView)
         
         //title
         contentView.addSubview(title)
@@ -91,7 +81,7 @@ class ScrollPageViewCell: UITableViewCell {
         title.lineBreakMode = .byTruncatingTail
         title.font = .systemFont(ofSize: 30)
         title.textAlignment = .center
-
+        
         title.snp.makeConstraints {
             $0.top.equalToSuperview().offset(CGFloat.topPadding)
             $0.left.equalToSuperview()
