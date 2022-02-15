@@ -15,15 +15,15 @@ protocol AutoFitTextFieldDelegate:AnyObject {
 
 class AutoFitTextFieldViewModel:ObservableObject{
     @Published var edittingText:String = ""
-    @Published var keyBoardBottomPadding:CGFloat = .bottomPadding * (-1)
+    @Published var keyBoardBottomPadding:CGFloat = 0
     weak var delegate:AutoFitTextFieldDelegate?
     
     @objc func keyboardWillShow(_ notification: Notification) {
         delegate?.onKeyboardWillShow()
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
-            withAnimation {
-                keyBoardBottomPadding = -(.bottomPadding + keyboardHeight)
+            withAnimation(Animation.easeOut(duration: 0.25)) {
+                keyBoardBottomPadding =  keyboardHeight
             }
         }
     }
@@ -32,7 +32,7 @@ class AutoFitTextFieldViewModel:ObservableObject{
     @objc func keyboardWillDisappear(notification: NSNotification?) {
         delegate?.onKeyboardWillDisappear()
         withAnimation {
-            keyBoardBottomPadding = .bottomPadding * (-1)
+            keyBoardBottomPadding = 0
         }
     }
 }

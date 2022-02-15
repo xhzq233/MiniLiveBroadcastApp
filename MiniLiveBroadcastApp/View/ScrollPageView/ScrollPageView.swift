@@ -26,11 +26,7 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //MARK: video cancel
-        guard let cell = cell as? ScrollPageViewCell else {
-            return
-        }
-        cell.pauseVideo()
-        hideBoard()
+        viewModel.onPageEndDisplay()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -44,9 +40,9 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
         // load video if scroll view not scrolling
         // i.e the first initialize
         if !self.isDragging {
-            print("loadVideo")
-            cell.loadVideo()
             showBoard(in: cell.contentView)
+            viewModel.setConfig(config: cell.config)
+            viewModel.onPageChanged()
         }
     }
 }
@@ -59,9 +55,16 @@ extension ScrollPageView: UIScrollViewDelegate {
         guard let cell = self.visibleCells.first as? ScrollPageViewCell else {
             return
         }
+        //waiting for better optimization
+        let isPageChanged = abs(contentOffset.y - lastYOffset) - frame.height > -30
         
-        cell.loadVideo()
-        showBoard(in: cell.contentView)
+        if isPageChanged {
+            currentPage = self.indexPath(for: cell)
+            viewModel.setConfig(config: cell.config)
+            showBoard(in: cell.contentView)
+            viewModel.onPageChanged()
+        }
+        lastYOffset = contentOffset.y
     }
 }
 
@@ -78,17 +81,20 @@ extension ScrollPageView:AutoFitTextFieldDelegate{
 }
 
 class ScrollPageView: UITableView {
-    
+    //used to judge page changed
+    var lastYOffset:CGFloat = .zero
+    var currentPage:IndexPath?
     var itemCount: Int = .defaultPageCount
     
     //MARK: publicBoard & viewModel
-    let publicBoardViewModel = PublicBoardViewModel()
+    let viewModel = PublicBoardViewModel()
     var publicBoardView:UIViewController!
     
     func setPublicBoard(rootVC:UIViewController) {
+        
         let model = AutoFitTextFieldViewModel()
         model.delegate = self
-        publicBoardView = UIHostingController(rootView: PublicBoardView(model: publicBoardViewModel, textFieldModel: model))
+        publicBoardView = UIHostingController(rootView: PublicBoardView(model: viewModel, textFieldModel: model))
         
         publicBoardView.view.backgroundColor = .clear
         rootVC.embed(publicBoardView)
@@ -101,18 +107,12 @@ class ScrollPageView: UITableView {
         publicBoardView.view.frame = view.bounds
     }
     
-    func hideBoard() {
-        publicBoardView.view.removeFromSuperview()
-    }
-    
-    deinit {
-        publicBoardView.removeFromParent()
-    }
-    
     //MARK: load more
     func loadmore() {
         itemCount += .defaultPageCount
         reloadData()
+        
+        // reloadData will dispose ur visible cells!
     }
     
     override func layoutSubviews() {

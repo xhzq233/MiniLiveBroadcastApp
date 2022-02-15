@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 extension Int {
-    static let defaultPageCount = 3
+    static let defaultPageCount = 10
 }
 
 extension CGFloat {

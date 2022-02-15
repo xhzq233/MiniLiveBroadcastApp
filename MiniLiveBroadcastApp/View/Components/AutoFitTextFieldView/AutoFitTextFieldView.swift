@@ -14,7 +14,7 @@ struct AutoFitTextFieldView: View {
     
     var body: some View {
         TextField(String.PublicBoardTextFieldHint, text: $model.edittingText)
-            .offset(x: 0, y: model.keyBoardBottomPadding)
+            .offset(x: 0, y: -model.keyBoardBottomPadding)
             .onAppear {
                 // kvo
                 NotificationCenter.default.addObserver(model,selector: #selector(model.keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil
