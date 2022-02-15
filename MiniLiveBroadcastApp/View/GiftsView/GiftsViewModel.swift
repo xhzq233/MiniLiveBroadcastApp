@@ -19,7 +19,7 @@ class GiftsViewModel: ObservableObject {
     static let giftEmojis = ["🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣"]
     
     static func createGiftsModel() -> GiftsModel<String> {
-        GiftsModel<String>(numberOfGifts: 2) { index in
+        GiftsModel<String>(numberOfGifts: 0) { index in
             GiftsViewModel.giftEmojis[index]
         }
     }

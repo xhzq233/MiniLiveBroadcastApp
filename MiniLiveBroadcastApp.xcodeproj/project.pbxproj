@@ -189,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				9388EF4527B6D533007000E4 /* ScrollPageCellConfigure.swift */,
+				B33F158E27BA9EC300751248 /* GiftsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,7 +239,6 @@
 			children = (
 				B33F158A27BA9E8B00751248 /* GiftsBoxView.swift */,
 				B33F158C27BA9EAB00751248 /* GiftsViewModel.swift */,
-				B33F158E27BA9EC300751248 /* GiftsModel.swift */,
 			);
 			path = GiftsView;
 			sourceTree = "<group>";

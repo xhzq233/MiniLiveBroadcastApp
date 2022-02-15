@@ -21,7 +21,15 @@ struct GiftsModel<GiftContent> where GiftContent: Equatable {
     // 发送礼物
     mutating func sendAGift(createGiftContent: (Int) -> GiftContent) {
         let content = createGiftContent(gifts.count)
-        gifts.append(Gift(isAlive: true, content: content, id: gifts.count))
+        gifts.append(Gift(isAlive: isTheFirstTwoGifts(gifts.count), content: content, id: gifts.count))
+        print(gifts.count)
+    }
+    
+    mutating func isTheFirstTwoGifts(_ count: Int) -> Bool {
+        if count >= 2 {
+            return false
+        }
+        return true
     }
     
     struct Gift: Identifiable {
