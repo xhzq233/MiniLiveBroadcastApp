@@ -7,11 +7,16 @@
 
 import Foundation
 import UIKit
+import simd
 
 class GiftsViewModel: ObservableObject {
     typealias Gift = GiftsModel<String>.Gift
     
-    static let giftEmojis = ["🤣", "🤣", "🤣", "🤣", "🤣"]
+    private(set) var appearedGiftCounts: Int = 0
+    
+    private static let MAX_GIFT_COUNT: Int = 2
+    
+    static let giftEmojis = ["🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣"]
     
     static func createGiftsModel() -> GiftsModel<String> {
         GiftsModel<String>(numberOfGifts: 2) { index in
@@ -27,6 +32,10 @@ class GiftsViewModel: ObservableObject {
     
     // MARK: Intents
     
-    
+    func sendAGift() {
+        giftsModel.sendAGift(createGiftContent: { index in
+            GiftsViewModel.giftEmojis[index]
+        })
+    }
     
 }
