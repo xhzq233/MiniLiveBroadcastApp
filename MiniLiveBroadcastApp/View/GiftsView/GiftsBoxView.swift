@@ -11,13 +11,17 @@ struct GiftsBoxView: View {
     @ObservedObject var giftsViewModel: GiftsViewModel
     
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .center, spacing: 5, pinnedViews: .sectionFooters) {
-                ForEach(giftsViewModel.gifts) { gift in
+        LazyVStack(alignment: .center, spacing: 5, pinnedViews: .sectionFooters) {
+            Button("send a gift") {
+                withAnimation {
+                    giftsViewModel.sendAGift()
+                }
+            }
+            ForEach(giftsViewModel.gifts) { gift in
+                if gift.isAlive {
                     GiftView(gift)
                         .frame(width: 200, height: 60, alignment: .center)
                         .opacity(0.3)
-
                 }
             }
         }
@@ -45,7 +49,7 @@ struct GiftView: View {
                             
                     }
                     .frame(width: 200 - 60*2 - 15 , height: 60, alignment: .center)
-                    Circle()
+                    Text(gift.content)
                         .frame(width: 60, height: 60, alignment: .center)
                 }
             }

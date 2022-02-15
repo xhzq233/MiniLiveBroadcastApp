@@ -18,7 +18,14 @@ struct GiftsModel<GiftContent> where GiftContent: Equatable {
         }
     }
     
+    // 发送礼物
+    mutating func sendAGift(createGiftContent: (Int) -> GiftContent) {
+        let content = createGiftContent(gifts.count)
+        gifts.append(Gift(isAlive: true, content: content, id: gifts.count))
+    }
+    
     struct Gift: Identifiable {
+        var isAlive: Bool = false
         var content: GiftContent
         var sender: User = User()
         var count: Int = 1
