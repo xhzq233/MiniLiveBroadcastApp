@@ -24,8 +24,7 @@ struct GiftsBoxView: View {
                 if gift.isAlive {
                     GiftView(gift)
                         .frame(width: 200, height: 60, alignment: .center)
-                       
-
+                        .transition(AnyTransition.opacity.combined(with: .slide))
                 }
             }
         }

@@ -11,12 +11,9 @@ struct PublicBoardView: View {
     
     @ObservedObject var model:PublicBoardViewModel
     let textFieldModel:AutoFitTextFieldViewModel
-    let giftsViewModel: GiftsViewModel
-    
     var body: some View {
         VStack {
             Spacer(minLength: 0)
-            GiftsBoxView(giftsViewModel: giftsViewModel)
             AutoFitTextFieldView(model: textFieldModel)
         }
     }
@@ -26,7 +23,6 @@ struct PublicBoardView_Previews: PreviewProvider {
     static var previews: some View {
         PublicBoardView(
             model: PublicBoardViewModel(),
-            textFieldModel: AutoFitTextFieldViewModel(),
-            giftsViewModel: GiftsViewModel())
+            textFieldModel: AutoFitTextFieldViewModel())
     }
 }
