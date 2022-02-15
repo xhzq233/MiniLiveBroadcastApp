@@ -11,23 +11,17 @@ struct GiftsBoxView: View {
     @ObservedObject var giftsViewModel: GiftsViewModel
     
     var body: some View {
-        LazyVStack(alignment: .center, spacing: 5, pinnedViews: .sectionFooters) {
-            ForEach(giftsViewModel.gifts) { gift in
-                GiftView(gift)
-                    .frame(width: 200, height: 60, alignment: .trailing)
-                    .opacity(0.3)
+        ScrollView {
+            LazyVStack(alignment: .center, spacing: 5, pinnedViews: .sectionFooters) {
+                ForEach(giftsViewModel.gifts) { gift in
+                    GiftView(gift)
+                        .frame(width: 200, height: 60, alignment: .center)
+                        .opacity(0.3)
 
+                }
             }
         }
-        
-//        VStack {
-//            ForEach(giftsViewModel.gifts) { gift in
-//                GiftView(gift)
-//                    .frame(width: 200, height: 60, alignment: .trailing)
-//                    .opacity(0.3)
-//            }
-//        }
-        
+        .frame(width: 200 + 10, height: 60*2 + 10, alignment: .center)
     }
 }
 
@@ -42,6 +36,18 @@ struct GiftView: View {
         GeometryReader(content: { geometry in
             ZStack {
                 RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                HStack {
+                    Circle()
+                        .frame(width: 60, height: 60, alignment: .center)
+                    VStack {
+                        Text("test aaaa %%")
+                            .lineLimit(1)
+                            
+                    }
+                    .frame(width: 200 - 60*2 - 15 , height: 60, alignment: .center)
+                    Circle()
+                        .frame(width: 60, height: 60, alignment: .center)
+                }
             }
         })
     }
