@@ -16,6 +16,7 @@ extension CGFloat {
     static let screenWidth = UIScreen.main.bounds.width
     static let screenHeight = UIScreen.main.bounds.height
     static let topPadding = CGFloat(40)
+    static let bottomPadding = CGFloat(20)
     static let horizontalPadding = CGFloat(20)
     static let iconSize = CGFloat(30)
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 /// SinglePage in ScrollView
 ///
@@ -25,7 +26,6 @@ class ScrollPageViewCell: UITableViewCell {
 
     private let title: UILabel = UILabel(frame: .zero)
     private let playerView: VideoPlayerView = VideoPlayerView()
-    private let more = UIImageView(image: UIImage(systemName: "ellipsis.circle"))
 
     var isPlaying: Bool {
         playerView.isPlaying
@@ -72,7 +72,7 @@ class ScrollPageViewCell: UITableViewCell {
         }
     }
 
-    /// make text color inherited from tint color
+    /// make `text color` inherited from `tint color`
     override func tintColorDidChange() {
         title.textColor = tintColor
     }
@@ -97,27 +97,10 @@ class ScrollPageViewCell: UITableViewCell {
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
         }
-
-        //more view
-        contentView.addSubview(more)
-        more.contentMode = .scaleAspectFit
-        more.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pressMore)))
-
-        more.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(CGFloat.topPadding)
-            $0.right.equalToSuperview().offset(-1 * CGFloat.horizontalPadding)
-            $0.size.equalTo(CGFloat.iconSize)
-        }
-
         title.text = .LoadingTitle
-    }
-
-    @objc func pressMore() {
-
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

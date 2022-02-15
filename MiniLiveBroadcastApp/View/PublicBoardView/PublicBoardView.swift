@@ -10,21 +10,18 @@ import SwiftUI
 struct PublicBoardView: View {
     
     @ObservedObject var model:PublicBoardViewModel
+    let textFieldModel:AutoFitTextFieldViewModel
     
     var body: some View {
         VStack {
-            Text("Hello, World!")
-            
-            TextField(String.PublicBoardTextFieldHint,text: $model.edittingText)
-            
+            Spacer(minLength: 0)
+            AutoFitTextFieldView(model: textFieldModel)
         }
-        .background(Color.clear)
-        
     }
 }
 
 struct PublicBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        PublicBoardView(model: PublicBoardViewModel())
+        PublicBoardView(model: PublicBoardViewModel(), textFieldModel: AutoFitTextFieldViewModel())
     }
 }

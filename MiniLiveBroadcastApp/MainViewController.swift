@@ -16,8 +16,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // disable bar
-        navigationController?.setNavigationBarHidden(true, animated: false)
         view.addSubview(scrollView)
 
         scrollView.setFilledConstraint(in: view)

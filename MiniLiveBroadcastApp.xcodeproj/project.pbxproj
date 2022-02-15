@@ -18,6 +18,8 @@
 		931457C427BA3FC6007F2EAA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 931457C327BA3FC6007F2EAA /* SnapKit */; };
 		931457CD27BA463D007F2EAA /* PublicBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457CC27BA463D007F2EAA /* PublicBoardView.swift */; };
 		931457CF27BA4AF3007F2EAA /* PublicBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */; };
+		931457D527BBB460007F2EAA /* AutoFitTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457D427BBB460007F2EAA /* AutoFitTextFieldView.swift */; };
+		931457D727BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457D627BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift */; };
 		9388EF3B27B65989007000E4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3A27B65989007000E4 /* Extension.swift */; };
 		9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3C27B6632E007000E4 /* ScrollPageView.swift */; };
 		9388EF4327B6D4F9007000E4 /* ScrollPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF4227B6D4F9007000E4 /* ScrollPageViewCell.swift */; };
@@ -63,6 +65,8 @@
 		93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLiveBroadcastAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		931457CC27BA463D007F2EAA /* PublicBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicBoardView.swift; sourceTree = "<group>"; };
 		931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicBoardViewModel.swift; sourceTree = "<group>"; };
+		931457D427BBB460007F2EAA /* AutoFitTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFitTextFieldView.swift; sourceTree = "<group>"; };
+		931457D627BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFitTextFieldViewModel.swift; sourceTree = "<group>"; };
 		9388EF3A27B65989007000E4 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9388EF3C27B6632E007000E4 /* ScrollPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageView.swift; sourceTree = "<group>"; };
 		9388EF4227B6D4F9007000E4 /* ScrollPageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageViewCell.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		93015AB827AD39780061E9DC /* MiniLiveBroadcastApp */ = {
 			isa = PBXGroup;
 			children = (
+				931457D827BBB576007F2EAA /* Model */,
 				9388EF4A27B7B481007000E4 /* View */,
 				93015AB927AD39780061E9DC /* AppDelegate.swift */,
 				93015ABB27AD39780061E9DC /* SceneDelegate.swift */,
@@ -163,12 +168,29 @@
 			path = PublicBoardView;
 			sourceTree = "<group>";
 		};
-		931457D127BA8525007F2EAA /* GiftsCapsuleView */ = {
+		931457D227BBB438007F2EAA /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				B30659F627BA56E3001827C2 /* GiftsCapsuleView.swift */,
+				931457D327BBB448007F2EAA /* AutoFitTextFieldView */,
 			);
-			path = GiftsCapsuleView;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		931457D327BBB448007F2EAA /* AutoFitTextFieldView */ = {
+			isa = PBXGroup;
+			children = (
+				931457D427BBB460007F2EAA /* AutoFitTextFieldView.swift */,
+				931457D627BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift */,
+			);
+			path = AutoFitTextFieldView;
+			sourceTree = "<group>";
+		};
+		931457D827BBB576007F2EAA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9388EF4527B6D533007000E4 /* ScrollPageCellConfigure.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9388EF4427B6D508007000E4 /* ScrollPageView */ = {
@@ -176,7 +198,6 @@
 			children = (
 				9388EF4227B6D4F9007000E4 /* ScrollPageViewCell.swift */,
 				9388EF3C27B6632E007000E4 /* ScrollPageView.swift */,
-				9388EF4527B6D533007000E4 /* ScrollPageCellConfigure.swift */,
 			);
 			path = ScrollPageView;
 			sourceTree = "<group>";
@@ -193,6 +214,7 @@
 		9388EF4A27B7B481007000E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				931457D227BBB438007F2EAA /* Components */,
 				B33F158927BA9E6000751248 /* GiftsView */,
 				931457CB27BA4633007F2EAA /* PublicBoardView */,
 				B3A7FB1A27B8E4B00067CC0C /* ThumbsUpView */,
@@ -374,9 +396,11 @@
 				93015ABC27AD39780061E9DC /* SceneDelegate.swift in Sources */,
 				9388EF4927B78B91007000E4 /* Constant.swift in Sources */,
 				9388EF3B27B65989007000E4 /* Extension.swift in Sources */,
+				931457D527BBB460007F2EAA /* AutoFitTextFieldView.swift in Sources */,
 				B33F158F27BA9EC300751248 /* GiftsModel.swift in Sources */,
 				9388EF4E27B7BA4A007000E4 /* VideoPlayerView.swift in Sources */,
 				9388EF4327B6D4F9007000E4 /* ScrollPageViewCell.swift in Sources */,
+				931457D727BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift in Sources */,
 				931457CD27BA463D007F2EAA /* PublicBoardView.swift in Sources */,
 				9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */,
 				B3A7FB1927B8DAF10067CC0C /* ThumbsUpView.swift in Sources */,

@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 class PublicBoardViewModel:ObservableObject {
     @Published var edittingText:String = ""
-    
+    @Published var keyBoardBottomPadding:CGFloat = .bottomPadding
     
 }

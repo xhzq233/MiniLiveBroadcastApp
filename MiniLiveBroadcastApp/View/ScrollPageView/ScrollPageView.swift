@@ -12,18 +12,18 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         itemCount
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: .PageCellIdentifier, for: indexPath) as! ScrollPageViewCell)
         cell.setConfigure(config: pageConfigureBuilder(self, indexPath.item))
         return cell
     }
-
+    
     //full screen item size
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.frame.height
     }
-
+    
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //MARK: video cancel
         guard let cell = cell as? ScrollPageViewCell else {
@@ -32,15 +32,15 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
         cell.pauseVideo()
         hideBoard()
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //MARK: preview load
         guard let cell = cell as? ScrollPageViewCell else {
             return
         }
-
+        
         cell.loadPreview()
-
+        
         // load video if scroll view not scrolling
         // i.e the first initialize
         if !self.isDragging {
@@ -55,18 +55,30 @@ extension ScrollPageView: UIScrollViewDelegate {
     //结束页面的滑动
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         //MARK: video load
-
+        
         guard let cell = self.visibleCells.first as? ScrollPageViewCell else {
             return
         }
-
+        
         cell.loadVideo()
         showBoard(in: cell.contentView)
     }
 }
 
-class ScrollPageView: UITableView {
+extension ScrollPageView:AutoFitTextFieldDelegate{
+    func onKeyboardWillShow() {
+        //to avoid auto scrolled caused by keyboardWillShow
+        //that will cause cell in the next screen displayed then auto load video
+        self.isScrollEnabled = false
+    }
+    
+    func onKeyboardWillDisappear() {
+        self.isScrollEnabled = true
+    }
+}
 
+class ScrollPageView: UITableView {
+    
     var itemCount: Int = .defaultPageCount
     
     //MARK: publicBoard & viewModel
@@ -74,9 +86,12 @@ class ScrollPageView: UITableView {
     var publicBoardView:UIViewController!
     
     func setPublicBoard(rootVC:UIViewController) {
-        publicBoardView = UIHostingController(rootView: PublicBoardView(model: publicBoardViewModel))
-        rootVC.embed(publicBoardView)
+        let model = AutoFitTextFieldViewModel()
+        model.delegate = self
+        publicBoardView = UIHostingController(rootView: PublicBoardView(model: publicBoardViewModel, textFieldModel: model))
+        
         publicBoardView.view.backgroundColor = .clear
+        rootVC.embed(publicBoardView)
     }
     
     func showBoard(in view:UIView) {
@@ -99,7 +114,7 @@ class ScrollPageView: UITableView {
         itemCount += .defaultPageCount
         reloadData()
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         if contentOffset.y > contentSize.height - frame.height {
@@ -116,29 +131,29 @@ class ScrollPageView: UITableView {
             // TODO: thumbsUp()
         }
     }
-
+    
     private let pageConfigureBuilder: PageConfigureBuilder
-
+    
     //MARK: custom
     init(frame: CGRect, pageConfigureBuilder: @escaping PageConfigureBuilder) {
         self.pageConfigureBuilder = pageConfigureBuilder
-
+        
         super.init(frame: frame, style: .plain)
         contentInset = .zero
         alwaysBounceVertical = false
         showsVerticalScrollIndicator = false
         backgroundColor = .black
         tintColor = .white
-
+        
         //turn to page
         isPagingEnabled = true
-
+        
         //delegate
         delegate = self
         dataSource = self
         register(ScrollPageViewCell.self, forCellReuseIdentifier: .PageCellIdentifier)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
