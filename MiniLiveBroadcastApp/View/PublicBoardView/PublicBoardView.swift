@@ -29,10 +29,10 @@ struct PublicBoardView: View {
                 GiftsBoxView(giftsViewModel)
                     .position(x: .screenWidth / 3.5, y: .screenHeight / 1.3)
                 HStack {
-                    ZStack{
+                    ZStack {
                         AutoFitTextFieldView(model: textFieldModel)
                             .textFieldStyle(.roundedBorder)
-                            .frame(width: .screenWidth / 1.2, height: DrawingConstants.bottomAreaHeight)
+                            .frame(width: .screenWidth / 1.2)
                     }
                     sendGiftsButton
                 }
@@ -59,15 +59,15 @@ struct PublicBoardView: View {
             }) {
                 Image(systemName: "gift").foregroundColor(.pink)
             }
-            .cornerRadius(DrawingConstants.bottomAreaHeight / 2)
-            .padding(10)
-            
+            .frame(width: DrawingConstants.bottomAreaHeight ,height: DrawingConstants.bottomAreaHeight)
+            .background(.white.opacity(0.3))
+            .cornerRadius(5)
         }
     }
 }
 
 fileprivate struct DrawingConstants {
-    static let bottomAreaHeight: CGFloat = 40
+    static let bottomAreaHeight: CGFloat = 35
 }
 
 struct PublicBoardView_Previews: PreviewProvider {
