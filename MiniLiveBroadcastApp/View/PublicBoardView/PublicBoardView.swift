@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct PublicBoardView: View {
-
+    
+    init(model: PublicBoardViewModel,textFieldModel: AutoFitTextFieldViewModel) {
+        self.textFieldModel = textFieldModel
+        self.model = model
+        self.model.delegate = giftsViewModel
+    }
+    
     @ObservedObject var model: PublicBoardViewModel
     let textFieldModel: AutoFitTextFieldViewModel
     @State var isVideoPlaying = false
@@ -17,36 +23,33 @@ struct PublicBoardView: View {
 
     var body: some View {
         ZStack {
-            ZStack {
-                VideoPlayerView(videoManager: model.videoManager)
-                    .onTapGesture(count: 1) {
-                        model.videoManager.updatePlayerState()
-                    }
-                    .simultaneousGesture(
-                        TapGesture(count: 2).onEnded {
-                            withAnimation {
-                                thumbsUpViewModel.makeAThumbsUp()
-                            }
-                        }
-                    )
-                VStack {
-                    HStack {
-                        GiftsBoxView(giftsViewModel)
-                            .position(x: .screenWidth / 3.5, y: .screenHeight / 1.3)
-                        ThumbsUpView(viewModel: thumbsUpViewModel)
-                            .position(x: .screenWidth / 2 - 40, y: .screenHeight / 2)
-                    }
-                    HStack {
-                        ZStack {
-                            AutoFitTextFieldView(model: textFieldModel)
-                                .textFieldStyle(.roundedBorder)
-                                .frame(width: .screenWidth / 1.2)
-                        }
-                        sendGiftsButton
-                    }
-                    ProgressView(value: model.progress)
-                        .padding(.bottomPadding)
+            VideoPlayerView(videoManager: model.videoManager)
+                .onTapGesture(count: 1) {
+                    model.videoManager.updatePlayerState()
                 }
+                .simultaneousGesture(
+                    TapGesture(count: 2).onEnded {
+                        withAnimation {
+                            thumbsUpViewModel.makeAThumbsUp()
+                        }
+                    }
+                )
+            VStack {
+                HStack {
+                    GiftsBoxView(giftsViewModel)
+                        .position(x: .screenWidth / 3.5, y: .screenHeight / 1.3)
+                    ThumbsUpView(viewModel: thumbsUpViewModel)
+                        .position(x: .screenWidth / 2 - 40, y: .screenHeight / 2)
+                }
+                HStack {
+                    ZStack {
+                        AutoFitTextFieldView(model: textFieldModel)
+                            .frame(width: .screenWidth / 1.2)
+                    }
+                    sendGiftsButton
+                }
+                ProgressView(value: model.progress)
+                    .padding(.bottomPadding)
             }
         }
         .opacity(model.isVideoReady ? 1 : 0)
@@ -82,7 +85,6 @@ struct PublicBoardView_Previews: PreviewProvider {
     static var previews: some View {
         PublicBoardView(
             model: PublicBoardViewModel(),
-            textFieldModel: AutoFitTextFieldViewModel(),
-            giftsViewModel: GiftsViewModel())
+            textFieldModel: AutoFitTextFieldViewModel())
     }
 }

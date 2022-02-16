@@ -7,24 +7,31 @@
 
 import SwiftUI
 
-class PublicBoardViewModel:ObservableObject {
+protocol PublicBoardViewPageChangedDelegate: AnyObject {
+    func onPageDidChanged()
+    func onPageEndDisplay()
+}
+
+class PublicBoardViewModel: ObservableObject {
     func setConfig(config: ScrollPageCellConfigure) {
         self.config = config
         onPageChanged()
     }
-    
-    var config:ScrollPageCellConfigure = .defaultConfigure
-    
-    @Published var progress:CGFloat = .zero
-    @Published var isVideoLoadFailed:Bool = false
-    @Published var isVideoReady:Bool = false
-    
+
+    var config: ScrollPageCellConfigure = .defaultConfigure
+    weak var delegate: PublicBoardViewPageChangedDelegate?
+
+    @Published var progress: CGFloat = .zero
+    @Published var isVideoLoadFailed: Bool = false
+    @Published var isVideoReady: Bool = false
+
     let videoManager = VideoPlayerManager()
-    
-    var errorDescription:String = ""
-    
+
+    var errorDescription: String = ""
+
     /// time to loadVideo and PublicBoardView if page changed
     func onPageChanged() {
+        delegate?.onPageDidChanged()
         if videoManager.status == .videoLoaded {
             //if already loaded, just play
             videoManager.play()
@@ -33,17 +40,17 @@ class PublicBoardViewModel:ObservableObject {
             videoManager.setPlayerSourceUrl(url: config.video)
         }
     }
-    
+
     func onPageEndDisplay() {
+        delegate?.onPageEndDisplay()
         isVideoReady = false
         videoManager.disposePlayer()
     }
-    
+
     init() {
         videoManager.delegate = self
     }
 }
-
 
 extension PublicBoardViewModel: VideoPlayerDelegate {
     func onProgressUpdate(current: CGFloat, total: CGFloat) {
@@ -54,19 +61,18 @@ extension PublicBoardViewModel: VideoPlayerDelegate {
     func onPlayItemStatusUpdate(status: VideoPlayStatus) {
         print(status)
         switch status {
-            case .loadingVideo:
-                break
-            case .videoLoaded:
-                isVideoReady = true
-                videoManager.play()
-                break
-            case .fail(let err):
-                isVideoLoadFailed = true
-                errorDescription = err
-                break
-            case .none://wont arrive here
-                break
+        case .loadingVideo:
+            break
+        case .videoLoaded:
+            isVideoReady = true
+            videoManager.play()
+            break
+        case .fail(let err):
+            isVideoLoadFailed = true
+            errorDescription = err
+            break
+        case .none:  //wont arrive here
+            break
         }
     }
-
 }
