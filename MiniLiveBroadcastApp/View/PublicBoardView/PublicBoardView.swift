@@ -49,6 +49,7 @@ struct PublicBoardView: View {
         .ignoresSafeArea()
     }
     
+    
     var sendGiftsButton: some View {
         ZStack {
             Button(action: {
