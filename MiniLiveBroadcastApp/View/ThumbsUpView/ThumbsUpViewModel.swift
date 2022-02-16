@@ -17,6 +17,10 @@ class ThumbsUpViewModel: ObservableObject {
         model.thumbsUp
     }
     
+    func changeAlive() {
+        model.changeAlive()
+    }
+    
     func makeAThumbsUp() {
         model.makeAThumbsUp()
     }

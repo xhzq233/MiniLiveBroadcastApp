@@ -49,6 +49,7 @@ struct GiftView: View {
                         .frame(width: 60, height: 60, alignment: .center)
                     VStack {
                         Text(/* gift.sender.userName */ String(gift.id))
+                            .foregroundColor(.white)
                             .lineLimit(1)
                             
                     }

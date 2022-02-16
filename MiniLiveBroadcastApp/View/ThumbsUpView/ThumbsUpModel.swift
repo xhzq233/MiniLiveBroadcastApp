@@ -15,9 +15,13 @@ struct ThumbsUpModel {
         thumbsUp.isAlive = true
     }
     
+    mutating func changeAlive() {
+        thumbsUp.isAlive.toggle()
+    }
+    
     struct ThumbsUp {
-        var isAlive: Bool = true
-        var content: String = "hand.thumbsup"
+        var isAlive: Bool = false
+        var content: String = "hand.thumbsup.fill"
         var id: Int = 0
     }
     

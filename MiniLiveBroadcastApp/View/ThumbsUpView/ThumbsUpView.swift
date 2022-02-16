@@ -13,26 +13,16 @@ struct ThumbsUpView: View {
     
     var body: some View{
         VStack {
-            let thumb = viewModel.thumbsUp
-            Image(systemName: thumb.content)
-                .frame(width: 100, height: 100)
-                .rotationEffect(Angle(degrees: Double(Int.random(in: -60 ... -30))))
-                .scaleEffect(thumb.isAlive ? 2:0)
-                .opacity(thumb.isAlive ? 0.6:0)
-//                .onAppear {
-//                    withAnimation{
-//                        thumb.isAlive = true
-//                    }
-//
-//                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-//                        withAnimation {
-//                            thumb.isAlive = false
-//                        }
-//                    })
-//                }
+            Image(systemName: viewModel.thumbsUp.content)
+                .resizable()
+                .frame(width: 30, height: 30)
+                .rotationEffect(Angle.degrees(viewModel.thumbsUp.isAlive ? 360: 0))
+                .foregroundColor(viewModel.thumbsUp.isAlive ? .red.opacity(0.7) : .black.opacity(0.8))
         }
         .onTapGesture {
-            viewModel.makeAThumbsUp()
+            withAnimation {
+                viewModel.changeAlive()
+            }
         }
     }
     
