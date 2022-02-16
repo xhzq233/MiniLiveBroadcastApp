@@ -11,7 +11,6 @@ struct PublicBoardView: View {
     
     @ObservedObject var model:PublicBoardViewModel
     let textFieldModel:AutoFitTextFieldViewModel
-    
     var body: some View {
         ZStack {
             VideoPlayerView(videoManager: model.videoManager)
@@ -43,6 +42,8 @@ struct PublicBoardView: View {
 
 struct PublicBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        PublicBoardView(model: PublicBoardViewModel(), textFieldModel: AutoFitTextFieldViewModel())
+        PublicBoardView(
+            model: PublicBoardViewModel(),
+            textFieldModel: AutoFitTextFieldViewModel())
     }
 }
