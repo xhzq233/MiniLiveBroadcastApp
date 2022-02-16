@@ -10,16 +10,12 @@ import SwiftUI
 struct GiftsBoxView: View {
     @ObservedObject var giftsViewModel: GiftsViewModel
     
+    init(_ giftsViewModel: GiftsViewModel) {
+        self.giftsViewModel = giftsViewModel
+    }
+    
     var body: some View {
         LazyVStack(alignment: .center, spacing: 5, pinnedViews: .sectionFooters) {
-            
-            // TODO: 临时Button
-            Button("send a gift") {
-                withAnimation {
-                    giftsViewModel.sendAGift()
-                }
-            }
-            
             ForEach(giftsViewModel.gifts) { gift in
                 if gift.isAlive {
                     GiftView(gift)
@@ -75,6 +71,6 @@ fileprivate struct DrawingConstants {
 struct GiftsView_Previews: PreviewProvider {
     static var previews: some View {
         let giftsViewModel = GiftsViewModel()
-        GiftsBoxView(giftsViewModel: giftsViewModel)
+        GiftsBoxView(giftsViewModel)
     }
 }

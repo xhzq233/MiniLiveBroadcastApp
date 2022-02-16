@@ -124,14 +124,6 @@ class ScrollPageView: UITableView {
         }
     }
     
-    // 点按两次屏幕点赞
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("Touching ScrollPageView !")
-        if touches.count == 2 {
-            // TODO: thumbsUp()
-        }
-    }
-    
     private let pageConfigureBuilder: PageConfigureBuilder
     
     //MARK: custom
