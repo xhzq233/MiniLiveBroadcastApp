@@ -10,6 +10,7 @@ import SwiftUI
 class PublicBoardViewModel:ObservableObject {
     func setConfig(config: ScrollPageCellConfigure) {
         self.config = config
+        onPageChanged()
     }
     
     var config:ScrollPageCellConfigure = .defaultConfigure
@@ -46,8 +47,8 @@ class PublicBoardViewModel:ObservableObject {
 
 extension PublicBoardViewModel: VideoPlayerDelegate {
     func onProgressUpdate(current: CGFloat, total: CGFloat) {
-        progress = current / total
-        print(progress)
+        let temp = current / total
+        progress = temp < 1.0 ? temp : 1.0
     }
 
     func onPlayItemStatusUpdate(status: VideoPlayStatus) {

@@ -8,34 +8,41 @@
 import SwiftUI
 
 struct PublicBoardView: View {
-    
-    @ObservedObject var model:PublicBoardViewModel
-    let textFieldModel:AutoFitTextFieldViewModel
+
+    @ObservedObject var model: PublicBoardViewModel
+    let textFieldModel: AutoFitTextFieldViewModel
+    @State var isVideoPlaying = false
     
     var body: some View {
         ZStack {
             VideoPlayerView(videoManager: model.videoManager)
+//                .overlay(
+//                    
+//                )
                 .onTapGesture {
                     model.videoManager.updatePlayerState()
                 }
             VStack {
+                HStack {
+
+                }
                 Spacer(minLength: 0)
                 HStack {
-                    ZStack{
+                    ZStack {
                         AutoFitTextFieldView(model: textFieldModel)
-                            .textFieldStyle(.roundedBorder)
                             .frame(width: .screenWidth / 1.2)
                     }
                 }
                 ProgressView(value: model.progress)
                     .padding(.bottomPadding)
             }
-            .opacity(model.isVideoReady ? 1 : 0)
         }
-        .alert(isPresented: $model.isVideoLoadFailed){
-            Alert(title: Text("Video Load Failed"),
-                  message: Text(model.errorDescription),
-                  dismissButton: .default(Text("Ok")))
+        .opacity(model.isVideoReady ? 1 : 0)
+        .alert(isPresented: $model.isVideoLoadFailed) {
+            Alert(
+                title: Text("Video Load Failed"),
+                message: Text(model.errorDescription),
+                dismissButton: .default(Text("Ok")))
         }
         .ignoresSafeArea()
     }

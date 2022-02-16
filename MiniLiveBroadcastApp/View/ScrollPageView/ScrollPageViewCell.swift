@@ -40,17 +40,13 @@ class ScrollPageViewCell: UITableViewCell {
         print("deinit!! \(config.title)")
     }
 
-    func showPreview(with url: String) {
-        preview.loadUrlImage(from: url)
-    }
-
     func setConfigure(config: ScrollPageCellConfigure) {
         self.config = config
     }
 
     /// load preview image and title
     func loadPreview() {
-        showPreview(with: config.previewImage)
+        preview.loadUrlImage(from: config.previewImage)
         self.title.text = self.config.title
     }
 

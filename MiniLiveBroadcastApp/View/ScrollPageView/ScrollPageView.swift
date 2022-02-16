@@ -15,7 +15,7 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: .PageCellIdentifier, for: indexPath) as! ScrollPageViewCell)
-        cell.setConfigure(config: pageConfigureBuilder(self, indexPath.item))
+        cell.setConfigure(config: configBuilder(self, indexPath.item))
         return cell
     }
     
@@ -40,9 +40,8 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
         // load video if scroll view not scrolling
         // i.e the first initialize
         if !self.isDragging {
-            showBoard(in: cell.contentView)
             viewModel.setConfig(config: cell.config)
-            viewModel.onPageChanged()
+            showBoard(in: cell.contentView)
         }
     }
 }
@@ -59,10 +58,8 @@ extension ScrollPageView: UIScrollViewDelegate {
         let isPageChanged = abs(contentOffset.y - lastYOffset) - frame.height > -30
         
         if isPageChanged {
-            currentPage = self.indexPath(for: cell)
             viewModel.setConfig(config: cell.config)
             showBoard(in: cell.contentView)
-            viewModel.onPageChanged()
         }
         lastYOffset = contentOffset.y
     }
@@ -83,7 +80,6 @@ extension ScrollPageView:AutoFitTextFieldDelegate{
 class ScrollPageView: UITableView {
     //used to judge page changed
     var lastYOffset:CGFloat = .zero
-    var currentPage:IndexPath?
     var itemCount: Int = .defaultPageCount
     
     //MARK: publicBoard & viewModel
@@ -111,7 +107,6 @@ class ScrollPageView: UITableView {
     func loadmore() {
         itemCount += .defaultPageCount
         reloadData()
-        
         // reloadData will dispose ur visible cells!
     }
     
@@ -124,19 +119,11 @@ class ScrollPageView: UITableView {
         }
     }
     
-    // 点按两次屏幕点赞
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("Touching ScrollPageView !")
-        if touches.count == 2 {
-            // TODO: thumbsUp()
-        }
-    }
-    
-    private let pageConfigureBuilder: PageConfigureBuilder
+    private let configBuilder: PageConfigureBuilder
     
     //MARK: custom
     init(frame: CGRect, pageConfigureBuilder: @escaping PageConfigureBuilder) {
-        self.pageConfigureBuilder = pageConfigureBuilder
+        configBuilder = pageConfigureBuilder
         
         super.init(frame: frame, style: .plain)
         contentInset = .zero
