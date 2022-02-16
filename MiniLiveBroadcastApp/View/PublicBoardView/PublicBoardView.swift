@@ -62,7 +62,6 @@ struct PublicBoardView: View {
             .frame(width: DrawingConstants.bottomAreaHeight ,height: DrawingConstants.bottomAreaHeight)
             .background(.white.opacity(0.3))
             .cornerRadius(5)
-        }
     }
 }
 
