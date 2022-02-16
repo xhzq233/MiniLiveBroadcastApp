@@ -26,7 +26,10 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //MARK: video cancel
-        viewModel.onPageEndDisplay()
+        
+        if isPageChanged {
+            viewModel.onPageEndDisplay()
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -54,8 +57,6 @@ extension ScrollPageView: UIScrollViewDelegate {
         guard let cell = self.visibleCells.first as? ScrollPageViewCell else {
             return
         }
-        //waiting for better optimization
-        let isPageChanged = abs(contentOffset.y - lastYOffset) - frame.height > -30
         
         if isPageChanged {
             viewModel.setConfig(config: cell.config)
@@ -78,6 +79,12 @@ extension ScrollPageView:AutoFitTextFieldDelegate{
 }
 
 class ScrollPageView: UITableView {
+    
+    var isPageChanged:Bool {
+        //waiting for better optimization
+        abs(contentOffset.y - lastYOffset) - frame.height > -30
+    }
+    
     //used to judge page changed
     var lastYOffset:CGFloat = .zero
     var itemCount: Int = .defaultPageCount

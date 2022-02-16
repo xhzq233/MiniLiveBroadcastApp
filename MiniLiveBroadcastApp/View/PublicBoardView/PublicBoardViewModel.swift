@@ -30,6 +30,7 @@ class PublicBoardViewModel: ObservableObject {
     var errorDescription: String = ""
 
     /// time to loadVideo and PublicBoardView if page changed
+    /// exceptional case: view first appear
     func onPageChanged() {
         delegate?.onPageDidChanged()
         if videoManager.status == .videoLoaded {
