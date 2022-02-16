@@ -9,45 +9,37 @@ import SwiftUI
 
 struct ThumbsUpView: View {
     
-    public let id = UUID()
-    
-    public var hit: CGPoint = CGPoint()
-    
-    @State var isAnimation: Bool = false {
-        didSet {
-            if !isAnimation {
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute:{
-                    withAnimation{
-                        isAnimation = false
-                    }
-                })
-            }
-        }
-    }
+    @ObservedObject var viewModel: ThumbsUpViewModel
     
     var body: some View{
-        Image(systemName: "hand.thumbsup")
-            .frame(width: 100, height: 100)
-            .rotationEffect(Angle(degrees: Double(Int.random(in: -60 ... -30))))
-            .scaleEffect(isAnimation ? 2:0)
-            .opacity(isAnimation ? 0.6:0)
-            .onAppear {
-                withAnimation{
-                    isAnimation = true
-                }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-                    withAnimation {
-                        isAnimation = false
-                    }
-                })
-            }
+        VStack {
+            let thumb = viewModel.thumbsUp
+            Image(systemName: thumb.content)
+                .frame(width: 100, height: 100)
+                .rotationEffect(Angle(degrees: Double(Int.random(in: -60 ... -30))))
+                .scaleEffect(thumb.isAlive ? 2:0)
+                .opacity(thumb.isAlive ? 0.6:0)
+//                .onAppear {
+//                    withAnimation{
+//                        thumb.isAlive = true
+//                    }
+//
+//                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+//                        withAnimation {
+//                            thumb.isAlive = false
+//                        }
+//                    })
+//                }
+        }
+        .onTapGesture {
+            viewModel.makeAThumbsUp()
+        }
     }
     
 }
 
 struct ThumbsUpView_Previews: PreviewProvider {
     static var previews: some View {
-        ThumbsUpView()
+        ThumbsUpView(viewModel: ThumbsUpViewModel())
     }
 }

@@ -37,8 +37,4 @@ struct GiftsModel<GiftContent> where GiftContent: Equatable {
     }
 }
 
-struct User {
-    // TODO: 头像图片
-    var profilePicture: String = "tiktok"
-    var userName: String = "NaNName"
-}
+
