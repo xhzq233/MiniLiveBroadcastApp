@@ -21,6 +21,10 @@ struct GiftsModel<GiftContent> where GiftContent: Equatable {
     // 发送礼物
     mutating func sendAGift(createGiftContent: (Int) -> GiftContent) {
         let content = createGiftContent(gifts.count)
+        let endIndex = gifts.endIndex
+        if gifts.count > 1 {
+            gifts[endIndex - 2].isAlive = false
+        }
         gifts.append(Gift(isAlive: true, content: content, id: gifts.count))
     }
     
@@ -33,6 +37,4 @@ struct GiftsModel<GiftContent> where GiftContent: Equatable {
     }
 }
 
-struct User {
-    
-}
+

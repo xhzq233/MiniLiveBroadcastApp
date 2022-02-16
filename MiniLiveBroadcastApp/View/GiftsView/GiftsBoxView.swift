@@ -10,18 +10,17 @@ import SwiftUI
 struct GiftsBoxView: View {
     @ObservedObject var giftsViewModel: GiftsViewModel
     
+    init(_ giftsViewModel: GiftsViewModel) {
+        self.giftsViewModel = giftsViewModel
+    }
+    
     var body: some View {
         LazyVStack(alignment: .center, spacing: 5, pinnedViews: .sectionFooters) {
-            Button("send a gift") {
-                withAnimation {
-                    giftsViewModel.sendAGift()
-                }
-            }
             ForEach(giftsViewModel.gifts) { gift in
                 if gift.isAlive {
                     GiftView(gift)
                         .frame(width: 200, height: 60, alignment: .center)
-                        .opacity(0.3)
+                        .transition(AnyTransition.opacity.combined(with: .slide))
                 }
             }
         }
@@ -36,15 +35,21 @@ struct GiftView: View {
         self.gift = gift
     }
     
+    // TODO: 读取礼物发送者的信息放入View中
     var body: some View {
-        GeometryReader(content: { geometry in
+        GeometryReader { geometry in
             ZStack {
                 RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
+                    .opacity(0.3)
                 HStack {
-                    Circle()
+                    Image(gift.sender.profilePicture)
+                        .resizable()
+                        .clipShape(Circle())
+                        .overlay(Circle().strokeBorder(.red ,lineWidth: 5))
                         .frame(width: 60, height: 60, alignment: .center)
                     VStack {
-                        Text("test aaaa %%")
+                        Text(/* gift.sender.userName */ String(gift.id))
+                            .foregroundColor(.white)
                             .lineLimit(1)
                             
                     }
@@ -53,7 +58,9 @@ struct GiftView: View {
                         .frame(width: 60, height: 60, alignment: .center)
                 }
             }
-        })
+            .transition(AnyTransition.opacity.combined(with: .slide))
+        }
+        
     }
 }
 
@@ -65,6 +72,6 @@ fileprivate struct DrawingConstants {
 struct GiftsView_Previews: PreviewProvider {
     static var previews: some View {
         let giftsViewModel = GiftsViewModel()
-        GiftsBoxView(giftsViewModel: giftsViewModel)
+        GiftsBoxView(giftsViewModel)
     }
 }

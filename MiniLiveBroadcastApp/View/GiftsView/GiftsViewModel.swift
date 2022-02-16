@@ -16,10 +16,10 @@ class GiftsViewModel: ObservableObject {
     
     private static let MAX_GIFT_COUNT: Int = 2
     
-    static let giftEmojis = ["🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣", "🤣"]
+    static let giftEmojis = ["🎁","🎁","🎁","🎁","🎁","🎁","🎁"]
     
     static func createGiftsModel() -> GiftsModel<String> {
-        GiftsModel<String>(numberOfGifts: 2) { index in
+        GiftsModel<String>(numberOfGifts: 0) { index in
             GiftsViewModel.giftEmojis[index]
         }
     }
@@ -34,7 +34,7 @@ class GiftsViewModel: ObservableObject {
     
     func sendAGift() {
         giftsModel.sendAGift(createGiftContent: { index in
-            GiftsViewModel.giftEmojis[index]
+                return GiftsViewModel.giftEmojis[0]
         })
     }
     
