@@ -34,7 +34,7 @@ class GiftsViewModel: ObservableObject {
     
     func sendAGift() {
         giftsModel.sendAGift(createGiftContent: { index in
-            GiftsViewModel.giftEmojis[index]
+                return GiftsViewModel.giftEmojis[0]
         })
     }
     
