@@ -5,8 +5,6 @@
 //  Created by 夏侯臻 on 2022/2/12.
 //
 
-import UIKit
-import AVFoundation
 import SwiftUI
 
 struct VideoPlayerView: UIViewRepresentable {

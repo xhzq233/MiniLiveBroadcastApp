@@ -20,6 +20,7 @@
 		931457CF27BA4AF3007F2EAA /* PublicBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */; };
 		931457D527BBB460007F2EAA /* AutoFitTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457D427BBB460007F2EAA /* AutoFitTextFieldView.swift */; };
 		931457D727BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457D627BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift */; };
+		933533B427BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933533B327BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift */; };
 		9373076D27BCEAA600B9006F /* ThinBlurBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9373076C27BCEAA600B9006F /* ThinBlurBackground.swift */; };
 		9388EF3B27B65989007000E4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3A27B65989007000E4 /* Extension.swift */; };
 		9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3C27B6632E007000E4 /* ScrollPageView.swift */; };
@@ -71,6 +72,7 @@
 		931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicBoardViewModel.swift; sourceTree = "<group>"; };
 		931457D427BBB460007F2EAA /* AutoFitTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFitTextFieldView.swift; sourceTree = "<group>"; };
 		931457D627BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFitTextFieldViewModel.swift; sourceTree = "<group>"; };
+		933533B327BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfAndOnlyIfOneTapModifier.swift; sourceTree = "<group>"; };
 		9373076C27BCEAA600B9006F /* ThinBlurBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinBlurBackground.swift; sourceTree = "<group>"; };
 		9388EF3A27B65989007000E4 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9388EF3C27B6632E007000E4 /* ScrollPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageView.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		931457D827BBB576007F2EAA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9388EF5027B7C419007000E4 /* VideoPlayerManager.swift */,
 				9388EF4527B6D533007000E4 /* ScrollPageCellConfigure.swift */,
 				B3C9920727BBEE7100113C7C /* User.swift */,
 			);
@@ -207,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				9373076C27BCEAA600B9006F /* ThinBlurBackground.swift */,
+				933533B327BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift */,
 			);
 			path = ViewModifier;
 			sourceTree = "<group>";
@@ -214,6 +218,7 @@
 		9388EF4427B6D508007000E4 /* ScrollPageView */ = {
 			isa = PBXGroup;
 			children = (
+				9388EF4D27B7BA4A007000E4 /* VideoPlayerView.swift */,
 				9388EF4227B6D4F9007000E4 /* ScrollPageViewCell.swift */,
 				9388EF3C27B6632E007000E4 /* ScrollPageView.swift */,
 			);
@@ -236,19 +241,9 @@
 				B33F158927BA9E6000751248 /* GiftsView */,
 				931457CB27BA4633007F2EAA /* PublicBoardView */,
 				B3A7FB1A27B8E4B00067CC0C /* ThumbsUpView */,
-				9388EF4F27B7C403007000E4 /* VideoPlayer */,
 				9388EF4427B6D508007000E4 /* ScrollPageView */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		9388EF4F27B7C403007000E4 /* VideoPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				9388EF4D27B7BA4A007000E4 /* VideoPlayerView.swift */,
-				9388EF5027B7C419007000E4 /* VideoPlayerManager.swift */,
-			);
-			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		B33F158927BA9E6000751248 /* GiftsView */ = {
@@ -410,9 +405,9 @@
 				B3A2A57327BBE7F7003ECA3B /* GiftsBoxView.swift in Sources */,
 				931457CF27BA4AF3007F2EAA /* PublicBoardViewModel.swift in Sources */,
 				93015ABE27AD39780061E9DC /* MainViewController.swift in Sources */,
+				933533B427BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift in Sources */,
 				93015ABA27AD39780061E9DC /* AppDelegate.swift in Sources */,
 				9373076D27BCEAA600B9006F /* ThinBlurBackground.swift in Sources */,
-				B33F158D27BA9EAB00751248 /* GiftsViewModel.swift in Sources */,
 				9388EF5127B7C419007000E4 /* VideoPlayerManager.swift in Sources */,
 				B3A2A57227BBE7F7003ECA3B /* GiftsModel.swift in Sources */,
 				93015ABC27AD39780061E9DC /* SceneDelegate.swift in Sources */,

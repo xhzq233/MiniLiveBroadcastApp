@@ -78,7 +78,7 @@ class VideoPlayerManager: NSObject {
 
     /// to play or pause
     func updatePlayerState() {
-        if player?.rate == 0 {
+        if !isPlaying {
             player?.play()
         } else {
             player?.pause()

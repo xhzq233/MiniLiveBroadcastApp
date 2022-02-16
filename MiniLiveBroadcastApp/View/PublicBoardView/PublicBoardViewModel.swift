@@ -48,6 +48,13 @@ class PublicBoardViewModel: ObservableObject {
         videoManager.disposePlayer()
     }
 
+    /// to play or pause
+    /// send `will change` to animate play status hint
+    func updatePlayerState() {
+        videoManager.updatePlayerState()
+        objectWillChange.send()
+    }
+
     init() {
         videoManager.delegate = self
     }
@@ -66,6 +73,7 @@ extension PublicBoardViewModel: VideoPlayerDelegate {
             break
         case .videoLoaded:
             isVideoReady = true
+            // auto play when is ready
             videoManager.play()
             break
         case .fail(let err):

@@ -8,31 +8,36 @@
 import SwiftUI
 
 struct PublicBoardView: View {
-    
-    init(model: PublicBoardViewModel,textFieldModel: AutoFitTextFieldViewModel) {
+
+    init(model: PublicBoardViewModel, textFieldModel: AutoFitTextFieldViewModel) {
         self.textFieldModel = textFieldModel
         self.model = model
         self.model.delegate = giftsViewModel
     }
-    
+
     @ObservedObject var model: PublicBoardViewModel
     let textFieldModel: AutoFitTextFieldViewModel
-    @State var isVideoPlaying = false
+
     @ObservedObject var giftsViewModel: GiftsViewModel = GiftsViewModel()
     @ObservedObject var thumbsUpViewModel: ThumbsUpViewModel = ThumbsUpViewModel()
 
     var body: some View {
         ZStack {
             VideoPlayerView(videoManager: model.videoManager)
-                .onTapGesture(count: 1) {
-                    model.videoManager.updatePlayerState()
-                }
-                .simultaneousGesture(
-                    TapGesture(count: 2).onEnded {
-                        withAnimation {
-                            thumbsUpViewModel.makeAThumbsUp()
-                        }
+                .ifAndOnlyIfOneTap { _ in
+                    withAnimation {
+                        model.updatePlayerState()
                     }
+                } onMoreTap: { _ in
+                    withAnimation {
+                        thumbsUpViewModel.makeAThumbsUp()
+                    }
+                }
+                .overlay(
+                    Image(systemName: "play.fill")
+                        .font(.system(size: .iconSize))
+                        .opacity(model.videoManager.isPlaying ? 0 : 0.5) //animatable
+                        .scaleEffect(model.videoManager.isPlaying ? 1 : 3)
                 )
             VStack {
                 HStack {
@@ -41,7 +46,7 @@ struct PublicBoardView: View {
                     ThumbsUpView(viewModel: thumbsUpViewModel)
                         .position(x: .screenWidth / 2 - 40, y: .screenHeight / 2)
                 }
-                HStack {
+                HStack(spacing: .horizontalSpacing) {
                     ZStack {
                         AutoFitTextFieldView(model: textFieldModel)
                             .frame(width: .screenWidth / 1.2)
@@ -64,16 +69,14 @@ struct PublicBoardView: View {
     }
 
     var sendGiftsButton: some View {
-        Button(action: {
-            withAnimation {
-                giftsViewModel.sendAGift()
+        Image(systemName: "gift")
+            .foregroundColor(.pink)
+            .onTapGesture {
+                withAnimation {
+                    giftsViewModel.sendAGift()
+                }
             }
-        }) {
-            Image(systemName: "gift").foregroundColor(.pink)
-        }
-        .frame(width: DrawingConstants.bottomAreaHeight, height: DrawingConstants.bottomAreaHeight)
-        .background(.white.opacity(0.3))
-        .cornerRadius(5)
+            .thinBlurBackground(shapeStyle: .thinMaterial)
     }
 }
 

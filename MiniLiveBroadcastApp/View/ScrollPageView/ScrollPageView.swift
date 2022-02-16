@@ -5,7 +5,6 @@
 //  Created by 夏侯臻 on 2022/2/11.
 //
 
-import UIKit
 import SwiftUI
 
 extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
