@@ -9,24 +9,11 @@ import SwiftUI
 
 typealias TapCallBack = (CGPoint) -> Void
 
-struct IfAndOnlyIfOneTapViewModifier: ViewModifier {
-
-    let onTap: TapCallBack
-
-    let onMoreTap: TapCallBack
-
-    func body(content: Content) -> some View {
-        content
-            .overlay(Overlay(onTap: onTap, onMoreTap: onMoreTap))
-    }
-
-}
-
 extension View {
     func ifAndOnlyIfOneTap(onTap: @escaping TapCallBack, onMoreTap: @escaping TapCallBack)
         -> some View
     {
-        self.modifier(IfAndOnlyIfOneTapViewModifier(onTap: onTap, onMoreTap: onMoreTap))
+        self.overlay(Overlay(onTap: onTap, onMoreTap: onMoreTap))
     }
 }
 
@@ -61,7 +48,8 @@ class IfAndOnlyIfOneTapView: UIView {
         super.init(frame: .zero)
 
         self.addGestureRecognizer(
-            UITapGestureRecognizer(target: self, action: #selector(handleGesture)))
+            UITapGestureRecognizer(target: self, action: #selector(handleGesture))
+        )
     }
 
     required init?(coder: NSCoder) {
@@ -74,9 +62,10 @@ class IfAndOnlyIfOneTapView: UIView {
 
         let time = CACurrentMediaTime()
 
-        if (time - lastTapTime) > .divideTapGapTime {
+        if (time - lastTapTime) > Self.divideTapGapTime {
             // need to judge isDoubleClick so delay divideTapGap
-            timer = Timer.init(timeInterval: .divideTapGapTime, repeats: false) { [weak self] _ in
+            timer = Timer.init(timeInterval: Self.divideTapGapTime, repeats: false) {
+                [weak self] _ in
                 self?.onTap(point)
             }
             if let timer = timer {
@@ -85,9 +74,45 @@ class IfAndOnlyIfOneTapView: UIView {
         } else {
             //cancel
             timer?.invalidate()
+            addHand(at: point)
             onMoreTap(point)
         }
         lastTapTime = time
     }
 
+    // add thumbs up animation
+    func addHand(at position: CGPoint) {
+        let likeImageView = UIImageView.init(image: UIImage.init(systemName: "hand.thumbsup.fill"))
+
+        self.addSubview(likeImageView)
+        likeImageView.tintColor = .red
+
+        likeImageView.frame = CGRect.init(
+            origin: position,
+            size: Self.thumbsUpSize
+        )
+
+        likeImageView.transform = CGAffineTransform(rotationAngle: -Self.angle).scaledBy(x: 0.8, y: 0.8)
+
+        UIView.animate(withDuration: Self.secondStageAnimeTime) {
+            likeImageView.transform = CGAffineTransform.init(rotationAngle: Self.angle)
+        } completion: { _ in
+            UIView.animate(
+                withDuration: Self.secondStageAnimeTime
+            ) {
+                likeImageView.transform = CGAffineTransform.init(scaleX: 3.0, y: 3.0)
+                likeImageView.alpha = 0.0
+            } completion: { _ in
+                likeImageView.removeFromSuperview()
+            }
+        }
+    }
+
+    /// time interval to judge isDoubleClick
+    static let divideTapGapTime = 0.25
+
+    static let firstStageAnimeTime = 0.25
+    static let secondStageAnimeTime = 0.4
+    static let thumbsUpSize = CGSize.init(width: 80, height: 80)
+    static let angle = Double.pi / 6.5
 }

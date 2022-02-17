@@ -45,8 +45,9 @@ class VideoPlayerManager: NSObject {
     func setPlayerSourceUrl(url: String) {
         
         guard status == .none && !isPlaying else { return }
-        
         if let sourceURL = URL(string: url) {
+            asset?.cancelLoading()
+            removeObserver()
             asset = AVAsset(url: sourceURL)
             if let asset = asset {
                 playerItem = AVPlayerItem(asset: asset)
@@ -118,18 +119,25 @@ extension VideoPlayerManager {
 
         if keyPath == #keyPath(AVPlayerItem.status) {
             let status:VideoPlayStatus
+            
             switch player?.status {
                 case .unknown:
                     // Player item is not yet ready.
                     status = .loadingVideo
                 case .readyToPlay:
-                    // Player item is ready to play.
-                    status = .videoLoaded
+                    
+                    // why player is ready but asset?.isPlayable is false
+                    if asset?.isPlayable == true && playerItem?.error == nil && player?.error == nil {
+//                         Player item is ready to play.
+                        status = .videoLoaded
+                    } else {
+                        status = .fail(err: playerItem?.error?.localizedDescription ?? "Unknown Error")
+                    }
                 case .failed:
-                    status = .fail(err: player?.error?.localizedDescription ?? "unknown")
+                    status = .fail(err: player?.error?.localizedDescription ?? "Unknown Error")
                     // Player item failed. See error.
                 case .none:
-                    status = .none
+                    status = .fail(err: "nil value")
                 @unknown default:
                     status = .none
             }

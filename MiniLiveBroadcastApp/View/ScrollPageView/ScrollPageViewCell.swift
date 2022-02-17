@@ -32,7 +32,7 @@ class ScrollPageViewCell: UITableViewCell {
     /// dispose player before reuse
     override func prepareForReuse() {
         super.prepareForReuse()
-        title.text = .LoadingTitle
+//        title.text = .LoadingTitle
         preview.image = UIImage(systemName: .LoadingSystemImage)
     }
 
@@ -47,7 +47,7 @@ class ScrollPageViewCell: UITableViewCell {
     /// load preview image and title
     func loadPreview() {
         preview.loadUrlImage(from: config.previewImage)
-        self.title.text = self.config.title
+//        self.title.text = self.config.title
     }
 
     /// make `text color` inherited from `tint color`

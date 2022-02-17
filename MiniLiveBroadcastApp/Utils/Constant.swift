@@ -25,10 +25,6 @@ extension CGFloat {
     static let horizontalSpacing = CGFloat(6)
 }
 
-extension Double {
-    /// time interval to judge isDoubleClick
-    static let divideTapGapTime = 0.2
-}
 
 extension String {
 

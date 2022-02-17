@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct VideoPlayerView: UIViewRepresentable {
-    let videoManager:VideoPlayerManager
-
+    let videoManager: VideoPlayerManager
     func updateUIView(_ uiView: UIViewType, context: Context) {
+
     }
 
     func makeUIView(context: Context) -> some UIView {
@@ -19,21 +19,20 @@ struct VideoPlayerView: UIViewRepresentable {
 }
 
 class VideoPlayerViewLayer: UIView {
-    private let videoManager:VideoPlayerManager
-    
-    // init and set layout
-    init(manager:VideoPlayerManager) {
+    private let videoManager: VideoPlayerManager
+
+    init(manager: VideoPlayerManager) {
         videoManager = manager
         super.init(frame: .zero)
         layer.addSublayer(videoManager.playerLayer)
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
         videoManager.playerLayer.frame = bounds
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
