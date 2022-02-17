@@ -5,7 +5,6 @@
 //  Created by 夏侯臻 on 2022/2/12.
 //
 
-import SnapKit
 import UIKit
 
 extension Int {
@@ -38,6 +37,7 @@ extension String {
     static let LoadingSystemImage = "hourglass"
 
     static let PublicBoardTextFieldHint = "说点什么..."
+    static let Follow = "关注"
 }
 
 extension ScrollPageCellConfigure {
@@ -51,7 +51,12 @@ extension ScrollPageCellConfigure {
     static let localVideo = "file:///Users/xhz/Desktop/background.nosync/%E5%9B%8Dfin.mp4"
 
     static let defaultConfigure = ScrollPageCellConfigure(
-        title: "Default", previewImage: bilibiliPersonAvatar, video: localVideo)
+        title: "Default",
+        previewImage: bilibiliPersonAvatar,
+        video: localVideo,
+        avatar: bilibiliPersonAvatar,
+        recommend: titokAvatar
+    )
 
     static let videos = [
         "http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4",
@@ -63,7 +68,11 @@ extension ScrollPageCellConfigure {
 
     static let instances: [ScrollPageCellConfigure] = (0...10).map { i -> ScrollPageCellConfigure in
         ScrollPageCellConfigure(
-            title: "Video \(i)", previewImage: titokAvatar,
-            video: videos.randomElement() ?? localVideo)
+            title: "Video \(i)",
+            previewImage: titokAvatar,
+            video: videos.randomElement() ?? localVideo,
+            avatar: bilibiliPersonAvatar,
+            recommend: titokAvatar
+        )
     }
 }

@@ -5,6 +5,7 @@
 //  Created by 夏侯臻 on 2022/2/14.
 //
 
+import Combine
 import SwiftUI
 
 protocol PublicBoardViewPageChangedDelegate: AnyObject {

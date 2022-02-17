@@ -14,7 +14,7 @@ struct AutoFitTextFieldView: View {
     
     var body: some View {
         TextField(String.PublicBoardTextFieldHint, text: $model.edittingText)
-            .thinBlurBackground(shapeStyle: .thinMaterial)
+            .thinBlurBackground()
             .offset(x: 0, y: -model.keyBoardBottomPadding)
             .onAppear {
                 // kvo
