@@ -13,6 +13,7 @@ protocol PublicBoardViewPageChangedDelegate: AnyObject {
 }
 
 class PublicBoardViewModel: ObservableObject {
+    // set config when page changed
     func setConfig(config: ScrollPageCellConfigure) {
         self.config = config
         onPageChanged()

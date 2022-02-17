@@ -16,4 +16,6 @@ struct ScrollPageCellConfigure {
     let title: String
     let previewImage: String
     let video: String
+    let avatar: String
+    let recommend: String //next url?
 }

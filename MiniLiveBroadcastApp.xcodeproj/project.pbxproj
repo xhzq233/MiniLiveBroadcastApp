@@ -15,6 +15,7 @@
 		93015AD127AD39790061E9DC /* MiniLiveBroadcastAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015AD027AD39790061E9DC /* MiniLiveBroadcastAppTests.swift */; };
 		93015ADB27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ADA27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift */; };
 		93015ADD27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */; };
+		93105E7427BE2D8F00534A5A /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93105E7327BE2D8F00534A5A /* URLImage.swift */; };
 		931457C427BA3FC6007F2EAA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 931457C327BA3FC6007F2EAA /* SnapKit */; };
 		931457CD27BA463D007F2EAA /* PublicBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457CC27BA463D007F2EAA /* PublicBoardView.swift */; };
 		931457CF27BA4AF3007F2EAA /* PublicBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */; };
@@ -68,6 +69,7 @@
 		93015AD627AD39790061E9DC /* MiniLiveBroadcastAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniLiveBroadcastAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93015ADA27AD39790061E9DC /* MiniLiveBroadcastAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLiveBroadcastAppUITests.swift; sourceTree = "<group>"; };
 		93015ADC27AD39790061E9DC /* MiniLiveBroadcastAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLiveBroadcastAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		93105E7327BE2D8F00534A5A /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
 		931457CC27BA463D007F2EAA /* PublicBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicBoardView.swift; sourceTree = "<group>"; };
 		931457CE27BA4AF3007F2EAA /* PublicBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicBoardViewModel.swift; sourceTree = "<group>"; };
 		931457D427BBB460007F2EAA /* AutoFitTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFitTextFieldView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				9373076B27BCE8C200B9006F /* ViewModifier */,
 				931457D327BBB448007F2EAA /* AutoFitTextFieldView */,
+				93105E7327BE2D8F00534A5A /* URLImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				93015ABA27AD39780061E9DC /* AppDelegate.swift in Sources */,
 				9373076D27BCEAA600B9006F /* ThinBlurBackground.swift in Sources */,
 				9388EF5127B7C419007000E4 /* VideoPlayerManager.swift in Sources */,
+				93105E7427BE2D8F00534A5A /* URLImage.swift in Sources */,
 				B3A2A57227BBE7F7003ECA3B /* GiftsModel.swift in Sources */,
 				93015ABC27AD39780061E9DC /* SceneDelegate.swift in Sources */,
 				9388EF4927B78B91007000E4 /* Constant.swift in Sources */,

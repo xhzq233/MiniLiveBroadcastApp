@@ -38,8 +38,8 @@ extension UIImageView {
                 print(err!)
                 return
             }
-            DispatchQueue.main.async {[unowned self] in
-                image = UIImage(data: data)
+            DispatchQueue.main.async {[weak self] in
+                self?.image = UIImage(data: data)
                 completion?()
             }
         }.resume()
