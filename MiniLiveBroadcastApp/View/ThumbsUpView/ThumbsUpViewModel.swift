@@ -17,12 +17,16 @@ class ThumbsUpViewModel: ObservableObject {
         model.thumbsUp
     }
     
+    var drawLocation: (x: Double, y: Double) {
+        model.hit
+    }
+    
     func changeAlive() {
         model.changeAlive()
     }
     
-    func makeAThumbsUp() {
-        model.makeAThumbsUp()
+    func makeAThumbsUp(at location: CGPoint) {
+        model.makeAThumbsUp(x: location.x, y: location.y)
     }
     
 }

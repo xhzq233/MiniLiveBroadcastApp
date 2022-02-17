@@ -11,8 +11,12 @@ struct ThumbsUpModel {
     
     private(set) var thumbsUp = ThumbsUp()
     
-    mutating func makeAThumbsUp() {
+    private(set) var hit: (x: Double, y: Double) = (0, 0)
+    
+    mutating func makeAThumbsUp(x: Double, y: Double) {
         thumbsUp.isAlive = true
+        self.hit.x = x
+        self.hit.y = y
     }
     
     mutating func changeAlive() {
