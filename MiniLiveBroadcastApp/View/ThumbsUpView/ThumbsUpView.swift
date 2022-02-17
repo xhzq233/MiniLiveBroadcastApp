@@ -11,13 +11,9 @@ struct ThumbsUpView: View {
     
     @ObservedObject var viewModel: ThumbsUpViewModel
     
-    var body: some View{
+    var body: some View {
         VStack {
-            Image(systemName: viewModel.thumbsUp.content)
-                .resizable()
-                .frame(width: 30, height: 30)
-                .rotationEffect(Angle.degrees(viewModel.thumbsUp.isAlive ? 360: 0))
-                .foregroundColor(viewModel.thumbsUp.isAlive ? .red.opacity(0.7) : .black.opacity(0.8))
+            Thumb(thumbsUp: viewModel.thumbsUp)
         }
         .onTapGesture {
             withAnimation {
@@ -26,6 +22,19 @@ struct ThumbsUpView: View {
         }
     }
     
+}
+
+struct Thumb: View {
+    
+    var thumbsUp: ThumbsUpViewModel.ThumbsUp
+    
+    var body: some View {
+        Image(systemName: thumbsUp.content)
+            .resizable()
+            .frame(width: 30, height: 30)
+            .rotationEffect(Angle.degrees(thumbsUp.isAlive ? 360: 0))
+            .foregroundColor(thumbsUp.isAlive ? .red.opacity(0.7) : .black.opacity(0.8))
+    }
 }
 
 struct ThumbsUpView_Previews: PreviewProvider {
