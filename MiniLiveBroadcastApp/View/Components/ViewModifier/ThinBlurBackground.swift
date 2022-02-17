@@ -7,28 +7,21 @@
 
 import SwiftUI
 
-struct ThinBlurBackground<S>: ViewModifier where S:Shape {
-    let shapeStyle:Material
-    let shape:S
-    func body(content: Content) -> some View {
-        content
-            .padding(.backgroundPadding)
+extension View {
+    func thinBlurBackground<S>(shapeStyle: Material, shape: S) -> some View where S: Shape {
+        self.padding(.backgroundPadding)
             .background(shapeStyle, in: shape)
     }
-}
-
-extension View {
-    
-    func thinBlurBackground<S>(shapeStyle:Material,shape:S) -> some View where S:Shape {
-        self.modifier(ThinBlurBackground(shapeStyle: shapeStyle, shape: shape))
-    }
-    func thinBlurBackground(shapeStyle:Material) -> some View {
-        self.modifier(ThinBlurBackground(shapeStyle: shapeStyle, shape: Capsule()))
+    func thinBlurBackground(shapeStyle: Material) -> some View {
+        self.padding(.backgroundPadding)
+            .background(shapeStyle, in: Capsule())
     }
     func thinBlurBackground() -> some View {
-        self.modifier(ThinBlurBackground(shapeStyle: .thinMaterial,shape: Capsule()))
+        self.padding(.backgroundPadding)
+            .background(.thinMaterial, in: Capsule())
     }
-    func thinBlurBackground<S>(shape:S) -> some View where S:Shape {
-        self.modifier(ThinBlurBackground(shapeStyle: .thinMaterial, shape: shape))
+    func thinBlurBackground<S>(shape: S) -> some View where S: Shape {
+        self.padding(.backgroundPadding)
+            .background(.thinMaterial, in: shape)
     }
 }

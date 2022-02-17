@@ -5,7 +5,6 @@
 //  Created by 夏侯臻 on 2022/2/14.
 //
 
-import Combine
 import SwiftUI
 
 protocol PublicBoardViewPageChangedDelegate: AnyObject {
@@ -14,6 +13,7 @@ protocol PublicBoardViewPageChangedDelegate: AnyObject {
 }
 
 class PublicBoardViewModel: ObservableObject {
+    // set config when page changed
     func setConfig(config: ScrollPageCellConfigure) {
         self.config = config
         onPageChanged()

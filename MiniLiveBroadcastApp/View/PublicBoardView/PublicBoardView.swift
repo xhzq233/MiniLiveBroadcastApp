@@ -45,24 +45,12 @@ struct PublicBoardView: View {
                         topArea
                             .padding(.top, .topPadding)
                         HStack {
-                            GiftsBoxView(giftsViewModel)
-                                .position(x: .screenWidth / 3.5, y: .screenHeight / 1.3)
-                            ThumbsUpView(viewModel: thumbsUpViewModel)
-                                .position(x: .screenWidth / 2 - 40, y: .screenHeight / 2)
+//                            GiftsBoxView(giftsViewModel)
+//                                .position(x: .screenWidth / 3.5, y: .screenHeight / 1.3)
+//                            ThumbsUpView(viewModel: thumbsUpViewModel)
+//                                .position(x: .screenWidth / 2 - 40, y: .screenHeight / 2)
                         }
-                        HStack(spacing: .horizontalSpacing) {
-                            ZStack(alignment: .trailing) {
-                                AutoFitTextFieldView(model: textFieldModel)
-                                    .padding(.leading, 4)
-                                Image(systemName: "mic.fill")
-                                    .imageScale(.large)
-                                    .padding()
-                            }
-                            Image(systemName: "suit.heart.fill")
-                                .foregroundColor(.pink)
-                                .thinBlurBackground(shape: Circle())
-                            sendGiftsButton
-                        }
+                        bottomBar
                         ProgressView(value: model.progress)
                             .padding(.bottomPadding)
                     }
@@ -74,23 +62,32 @@ struct PublicBoardView: View {
             Alert(
                 title: Text("Video Load Failed"),
                 message: Text(model.errorDescription),
-                dismissButton: .default(Text("Ok"))
+                dismissButton: .cancel((Text("Ok")))
             )
         }
 
     }
-
-    var sendGiftsButton: some View {
-        Image(systemName: "gift")
-            .foregroundColor(.pink)
-            .onTapGesture {
-                withAnimation {
-                    giftsViewModel.sendAGift()
+    
+    var bottomBar: some View {
+        HStack(spacing: .horizontalSpacing) {
+            AutoFitTextFieldView(model: textFieldModel)
+            Image(systemName: "suit.heart.fill")
+                .foregroundColor(.pink)
+                .thinBlurBackground(shape: Circle())
+            Image(systemName: "gift")
+                .foregroundColor(.pink)
+                .onTapGesture {
+                    withAnimation {
+                        giftsViewModel.sendAGift()
+                    }
                 }
-            }
-            .thinBlurBackground(shape: Circle())
+                .thinBlurBackground(shape: Circle())
+            Image(systemName: "ellipsis.circle")
+                .thinBlurBackground(shape: Circle())
+        }
+        .padding(.horizontal, 4)
     }
-
+    
     var topArea: some View {
         GeometryReader { geo in
             let size = geo.size.width * DrawingConstants.imageSizeFactor
@@ -108,9 +105,9 @@ struct PublicBoardView: View {
                         .frame(width: size * 1.1)
                         .lineLimit(1)
                         .padding(2)
-                    //this is margin, inner view padding with container view
+                        //this is margin, inner view padding to container view
                         .background(.red, in: Capsule())
-                        .padding(.horizontal,2)
+                        .padding(.horizontal, 2)
                 }
                 .background(.thinMaterial, in: Capsule())
                 .padding(.leading, .horizontalSpacing)
