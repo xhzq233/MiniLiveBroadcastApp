@@ -8,8 +8,8 @@
 import SwiftUI
 
 class BulletChattingViewModel: ObservableObject {
-    @Published private(set) var bullets: Bullets = []
-    
+    @Published var bullets: Bullets = []
+
     func fire(_ bullet: Bullet) {
         withAnimation {
             bullets.insert(bullet, at: 0)
@@ -23,5 +23,6 @@ class BulletChattingViewModel: ObservableObject {
             }
         }
     }
+    
     static let maxCount = 5
 }

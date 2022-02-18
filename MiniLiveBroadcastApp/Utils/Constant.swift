@@ -33,12 +33,13 @@ extension String {
 
     static let PublicBoardTextFieldHint = "说点什么..."
     static let Follow = "关注"
+    static let UnFollow = "已关注"
 }
 
 extension ScrollPageCellConfigure {
 
     static let titokAvatar =
-        "https://img.zcool.cn/community/01a2415ae121b5a801214a61dae070.jpg@1280w_1l_2o_100sh.jpg"
+        "https://tse3-mm.cn.bing.net/th/id/OIP-C.-tnna94uAIeB64iqitjRVwHaHU?pid=ImgDet&rs=1"
 
     static let bilibiliPersonAvatar =
         "https://i0.hdslb.com/bfs/face/eb6a64203e088fb08ab447d75c1842e440611cba.jpg@240w_240h_1c_1s.webp"
@@ -52,6 +53,8 @@ extension ScrollPageCellConfigure {
 
     static let yae = "https://staticg.sportskeeda.com/editor/2021/04/67d38-16189431025087.png"
 
+    static let yanFei =
+        "https://tse4-mm.cn.bing.net/th/id/OIP-C.AhMgCypX_J3trIv93H0s1wHaIp?pid=ImgDet&w=514&h=600&rs=1"
     static let avatars = [
         titokAvatar,
         bilibiliPersonAvatar,
@@ -59,6 +62,7 @@ extension ScrollPageCellConfigure {
         raidenShogun1,
         raidenShogun2,
         yae,
+        yanFei,
     ]
 
     static let localVideo = "file:///Users/xhz/Desktop/background.nosync/%E5%9B%8Dfin.mp4"
@@ -67,8 +71,7 @@ extension ScrollPageCellConfigure {
         title: "Default",
         previewImage: bilibiliPersonAvatar,
         video: localVideo,
-        avatar: bilibiliPersonAvatar,
-        recommend: titokAvatar
+        avatar: bilibiliPersonAvatar
     )
 
     static let videos = [
@@ -84,20 +87,19 @@ extension ScrollPageCellConfigure {
             title: "Video \(i)",
             previewImage: titokAvatar,
             video: videos.randomElement() ?? localVideo,
-            avatar: avatars.randomElement() ?? bilibiliPersonAvatar,
-            recommend: avatars.randomElement() ?? bilibiliPersonAvatar
+            avatar: avatars.randomElement() ?? bilibiliPersonAvatar
         )
     }
 }
 
-extension Gifts {
-    static let instances: Self =
-        Users.instances.map { user in
+extension Gift {
+    static let instances: Gifts =
+        User.instances.map { user in
             Gift(sender: user, giftID: 0)
         }
 }
 
-extension Bullets {
+extension Bullet {
     static let prefixStrings = [
         "⚽️7 ",
         "🥎4 ",
@@ -109,7 +111,7 @@ extension Bullets {
     ]
 }
 
-extension Users {
+extension User {
 
     static let names = [
         "xhzq233",
@@ -118,9 +120,10 @@ extension Users {
         "Yae",
         "RaidenShogun",
         "Ayaka",
+        "YanFei",
     ]
 
-    static let instances: Self =
+    static let instances: Users =
         ScrollPageCellConfigure.avatars.map { str in
             User(avatar: str, userName: names.randomElement()!)
         }

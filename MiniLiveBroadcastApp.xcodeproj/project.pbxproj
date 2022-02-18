@@ -141,12 +141,12 @@
 		93015AB827AD39780061E9DC /* MiniLiveBroadcastApp */ = {
 			isa = PBXGroup;
 			children = (
+				9388EF4727B78B79007000E4 /* Utils */,
 				931457D827BBB576007F2EAA /* Model */,
 				9388EF4A27B7B481007000E4 /* View */,
 				93015AB927AD39780061E9DC /* AppDelegate.swift */,
 				93015ABB27AD39780061E9DC /* SceneDelegate.swift */,
 				93015ABD27AD39780061E9DC /* MainViewController.swift */,
-				9388EF4727B78B79007000E4 /* Utils */,
 				93015AC227AD39790061E9DC /* Assets.xcassets */,
 				93015AC427AD39790061E9DC /* LaunchScreen.storyboard */,
 				93015AC727AD39790061E9DC /* Info.plist */,
@@ -183,6 +183,8 @@
 		931457D227BBB438007F2EAA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				93DC5FF327BED14C00FDA549 /* BulletChattingView */,
+				B33F158927BA9E6000751248 /* GiftsView */,
 				9373076B27BCE8C200B9006F /* ViewModifier */,
 				931457D327BBB448007F2EAA /* AutoFitTextFieldView */,
 				93105E7327BE2D8F00534A5A /* URLImage.swift */,
@@ -242,9 +244,7 @@
 		9388EF4A27B7B481007000E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				93DC5FF327BED14C00FDA549 /* BulletChattingView */,
 				931457D227BBB438007F2EAA /* Components */,
-				B33F158927BA9E6000751248 /* GiftsView */,
 				931457CB27BA4633007F2EAA /* PublicBoardView */,
 				9388EF4427B6D508007000E4 /* ScrollPageView */,
 			);

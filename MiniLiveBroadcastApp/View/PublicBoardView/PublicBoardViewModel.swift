@@ -23,9 +23,12 @@ class PublicBoardViewModel: ObservableObject {
     weak var delegate: PublicBoardViewPageChangedDelegate?
 
     @Published var progress: CGFloat = .zero
-    @Published var isVideoLoadFailed: Bool = false
-    @Published var isVideoReady: Bool = false
-
+    @Published var isVideoLoadFailed = false
+    @Published var isVideoReady = false
+    @Published var isShowGiftChooser = false
+    @Published var isMoreShowed = true
+    @Published var isFollowed = false
+    
     let videoManager = VideoPlayerManager()
 
     var errorDescription: String = ""
@@ -33,6 +36,15 @@ class PublicBoardViewModel: ObservableObject {
     /// time to loadVideo and PublicBoardView if page changed
     /// exceptional case: view first appear
     func onPageChanged() {
+        //reset
+        errorDescription = ""
+        isMoreShowed = true
+        isVideoLoadFailed = false
+        isVideoReady = false
+        isShowGiftChooser = false
+        isMoreShowed = true
+        isFollowed = false
+        
         delegate?.onPageDidChanged()
         if videoManager.status == .videoLoaded {
             //if already loaded, just play
@@ -68,7 +80,6 @@ extension PublicBoardViewModel: VideoPlayerDelegate {
     }
 
     func onPlayItemStatusUpdate(status: VideoPlayStatus) {
-        print(status)
         switch status {
         case .loadingVideo:
             break

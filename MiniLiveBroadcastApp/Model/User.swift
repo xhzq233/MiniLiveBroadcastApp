@@ -9,6 +9,7 @@ import Foundation
 
 typealias Users = [User]
 
+/// the reason why user using class type is that it have no need to be copied
 class User {
     internal init(avatar: String, userName: String) {
         self.avatar = avatar
