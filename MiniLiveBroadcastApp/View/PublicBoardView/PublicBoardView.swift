@@ -18,7 +18,8 @@ struct PublicBoardView: View {
     @ObservedObject var model: PublicBoardViewModel
     let textFieldModel: AutoFitTextFieldViewModel
     let giftsViewModel: GiftsViewModel = GiftsViewModel()
-
+    let bulletChattingViewModel: BulletChattingViewModel = BulletChattingViewModel()
+    
     var body: some View {
         Group {
             if model.isVideoReady {  // use `if` to avoid pre load
@@ -40,9 +41,9 @@ struct PublicBoardView: View {
                     VStack {
                         topBar
                             .padding(.top, .topPadding)
+                        Spacer(minLength: .screenHeight / 4) //blank area
                         GiftsBoxView(giftsViewModel)
-                            .position(x: .screenWidth / 3.5, y: .screenHeight / 1.3)
-                        BulletChattingView()
+                        BulletChattingView(model: bulletChattingViewModel)
                         bottomBar
                         ProgressView(value: model.progress)
                             .padding(.bottomPadding)
@@ -70,7 +71,11 @@ struct PublicBoardView: View {
 
     var bottomBar: some View {
         HStack(spacing: .horizontalSpacing) {
-            AutoFitTextFieldView(model: textFieldModel)
+            AutoFitTextFieldView(model: textFieldModel) { content in
+                //notice that content type is Bind<String>
+                bulletChattingViewModel.fire(Bullet(prefix: "", name: "xhzq233", content: content.wrappedValue))
+                content.wrappedValue = ""
+            }
             Image(systemName: "suit.heart.fill")
                 .foregroundColor(.pink)
                 .thinBlurBackground(shape: Circle())

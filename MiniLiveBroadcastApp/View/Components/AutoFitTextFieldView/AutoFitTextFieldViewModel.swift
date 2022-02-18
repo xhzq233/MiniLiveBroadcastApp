@@ -14,7 +14,7 @@ protocol AutoFitTextFieldDelegate:AnyObject {
 }
 
 class AutoFitTextFieldViewModel:ObservableObject{
-    @Published var edittingText:String = ""
+    
     @Published var keyBoardBottomPadding:CGFloat = 0
     weak var delegate:AutoFitTextFieldDelegate?
     

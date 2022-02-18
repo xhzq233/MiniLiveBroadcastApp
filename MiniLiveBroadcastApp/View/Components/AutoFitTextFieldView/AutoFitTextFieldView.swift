@@ -7,13 +7,20 @@
 
 import SwiftUI
 
+typealias ReturnCallBack = (_ content:Binding<String>) -> Void
+
 struct AutoFitTextFieldView: View {
 
     @ObservedObject var model: AutoFitTextFieldViewModel
-
+    let returnCallBack:ReturnCallBack
+    @State var edittingText:String = ""
+    
     var body: some View {
         ZStack(alignment: .trailing) {
-            TextField(String.PublicBoardTextFieldHint, text: $model.edittingText)
+            TextField(String.PublicBoardTextFieldHint, text: $edittingText)
+                .onSubmit {
+                    returnCallBack($edittingText)
+                }
                 .thinBlurBackground()
             Image(systemName: "mic.fill")
                 .imageScale(.large)
