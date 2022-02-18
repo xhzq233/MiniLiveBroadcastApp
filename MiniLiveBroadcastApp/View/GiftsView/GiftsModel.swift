@@ -29,7 +29,7 @@ struct GiftsModel<GiftContent> where GiftContent: Equatable {
     }
     
     struct Gift: Identifiable {
-        var isAlive: Bool = false
+        var isAlive: Bool = true
         var content: GiftContent
         var sender: User = User()
         var count: Int = 1
