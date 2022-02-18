@@ -17,7 +17,7 @@ struct PublicBoardView: View {
 
     @ObservedObject var model: PublicBoardViewModel
     let textFieldModel: AutoFitTextFieldViewModel
-    @ObservedObject var giftsViewModel: GiftsViewModel = GiftsViewModel()
+    let giftsViewModel: GiftsViewModel = GiftsViewModel()
 
     var body: some View {
         Group {
@@ -115,7 +115,6 @@ struct PublicBoardView: View {
 
                 Spacer(minLength: size * 2)
                 HStack(spacing: .horizontalSpacing) {
-
                     Group {
                         URLImage(urlString: model.config.avatar)
                             .frame(width: size)
@@ -126,13 +125,17 @@ struct PublicBoardView: View {
                         URLImage(urlString: model.config.avatar)
                             .frame(width: size)
                             .clipShape(Circle())
-                    }.opacity( isMoreShowed ? 1 : 0 )
-
+                    }// use group to animate together
+                    .opacity(isMoreShowed ? 1 : 0)
+                    .scaleEffect(isMoreShowed ? 1 : 0.5)
+                    .offset(x: isMoreShowed ? 0 : size * 2, y: 0)
                     Image(systemName: "multiply")
+                        .rotationEffect(isMoreShowed ? .radians(.pi / 2) : .zero)
                         .thinBlurBackground(shape: Circle())
                         .frame(width: size)
                         .onTapGesture {
-                            withAnimation(.spring()) {
+                            // explicit animation
+                            withAnimation {
                                 isMoreShowed.toggle()
                             }
                         }
