@@ -37,15 +37,18 @@ struct PublicBoardView: View {
                                 .opacity(model.videoManager.isPlaying ? 0 : 0.7)  //animatable
                                 .scaleEffect(model.videoManager.isPlaying ? 1 : 3)
                         )
-                    VStack {
-                        topBar
-                            .padding(.top, .topPadding)
+                    ZStack {
+                        VStack {
+                            topBar
+                                .padding(.top, .topPadding)
+                            BulletChattingView()
+                            bottomBar
+                            ProgressView(value: model.progress)
+                                .padding(.bottomPadding)
+
+                        }
                         GiftsBoxView(giftsViewModel)
                             .position(x: .screenWidth / 3.5, y: .screenHeight / 1.3)
-                        BulletChattingView()
-                        bottomBar
-                        ProgressView(value: model.progress)
-                            .padding(.bottomPadding)
                     }
                 }
             }
