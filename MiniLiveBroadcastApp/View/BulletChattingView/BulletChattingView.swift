@@ -15,7 +15,7 @@ struct BulletChattingView: View {
         VStack(alignment: .leading) {
             ForEach(model.bullets) {
                 BulletChatRow(bullet: $0)
-                    .lineLimit(3)
+                    .lineLimit(nil)
                     .scaleEffect(x: 1, y: -1, anchor: .center)
                     .transition(.opacity.combined(with: .slide))
             }
@@ -32,10 +32,9 @@ struct BulletChatRow: View {
     let bullet: Bullet
     var body: some View {  //swiftUI support native rich text
         (Text(bullet.prefix)
-            .font(.title)
-            + Text(bullet.name + ":").bold().foregroundColor(.green)
+         + Text(" " + bullet.sender.userName + ": ").bold()
+            .foregroundColor([.pink,.green,.blue].randomElement()!)
             + Text(bullet.content))
             .thinBlurBackground()
     }
 }
-

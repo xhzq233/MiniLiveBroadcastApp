@@ -11,6 +11,6 @@ typealias Bullets = [Bullet]
 struct Bullet: Identifiable {
     let id = UUID()
     let prefix: String
-    let name: String
+    let sender: User
     let content: String
 }

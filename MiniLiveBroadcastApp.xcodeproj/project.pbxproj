@@ -22,6 +22,7 @@
 		931457D527BBB460007F2EAA /* AutoFitTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457D427BBB460007F2EAA /* AutoFitTextFieldView.swift */; };
 		931457D727BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931457D627BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift */; };
 		933533B427BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933533B327BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift */; };
+		9346264127BF9E2F00EC94C8 /* Gift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9346264027BF9E2F00EC94C8 /* Gift.swift */; };
 		9373076D27BCEAA600B9006F /* ThinBlurBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9373076C27BCEAA600B9006F /* ThinBlurBackground.swift */; };
 		9388EF3B27B65989007000E4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3A27B65989007000E4 /* Extension.swift */; };
 		9388EF3D27B6632E007000E4 /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388EF3C27B6632E007000E4 /* ScrollPageView.swift */; };
@@ -34,8 +35,7 @@
 		93DC5FF727BF72AF00FDA549 /* BulletChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC5FF627BF72AF00FDA549 /* BulletChattingViewModel.swift */; };
 		93DC5FF927BF72CE00FDA549 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC5FF827BF72CE00FDA549 /* Bullet.swift */; };
 		B3A2A57127BBE7F7003ECA3B /* GiftsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2A56E27BBE7F7003ECA3B /* GiftsViewModel.swift */; };
-		B3A2A57227BBE7F7003ECA3B /* GiftsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2A56F27BBE7F7003ECA3B /* GiftsModel.swift */; };
-		B3A2A57327BBE7F7003ECA3B /* GiftsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2A57027BBE7F7003ECA3B /* GiftsBoxView.swift */; };
+		B3A2A57327BBE7F7003ECA3B /* GiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A2A57027BBE7F7003ECA3B /* GiftsView.swift */; };
 		B3C9920827BBEE7100113C7C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C9920727BBEE7100113C7C /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +75,7 @@
 		931457D427BBB460007F2EAA /* AutoFitTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFitTextFieldView.swift; sourceTree = "<group>"; };
 		931457D627BBB48F007F2EAA /* AutoFitTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFitTextFieldViewModel.swift; sourceTree = "<group>"; };
 		933533B327BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfAndOnlyIfOneTapModifier.swift; sourceTree = "<group>"; };
+		9346264027BF9E2F00EC94C8 /* Gift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gift.swift; sourceTree = "<group>"; };
 		9373076C27BCEAA600B9006F /* ThinBlurBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinBlurBackground.swift; sourceTree = "<group>"; };
 		9388EF3A27B65989007000E4 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9388EF3C27B6632E007000E4 /* ScrollPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPageView.swift; sourceTree = "<group>"; };
@@ -87,8 +88,7 @@
 		93DC5FF627BF72AF00FDA549 /* BulletChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletChattingViewModel.swift; sourceTree = "<group>"; };
 		93DC5FF827BF72CE00FDA549 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		B3A2A56E27BBE7F7003ECA3B /* GiftsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsViewModel.swift; sourceTree = "<group>"; };
-		B3A2A56F27BBE7F7003ECA3B /* GiftsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsModel.swift; sourceTree = "<group>"; };
-		B3A2A57027BBE7F7003ECA3B /* GiftsBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsBoxView.swift; sourceTree = "<group>"; };
+		B3A2A57027BBE7F7003ECA3B /* GiftsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsView.swift; sourceTree = "<group>"; };
 		B3C9920727BBEE7100113C7C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,6 +206,7 @@
 				9388EF4527B6D533007000E4 /* ScrollPageCellConfigure.swift */,
 				B3C9920727BBEE7100113C7C /* User.swift */,
 				93DC5FF827BF72CE00FDA549 /* Bullet.swift */,
+				9346264027BF9E2F00EC94C8 /* Gift.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,8 +263,7 @@
 		B33F158927BA9E6000751248 /* GiftsView */ = {
 			isa = PBXGroup;
 			children = (
-				B3A2A57027BBE7F7003ECA3B /* GiftsBoxView.swift */,
-				B3A2A56F27BBE7F7003ECA3B /* GiftsModel.swift */,
+				B3A2A57027BBE7F7003ECA3B /* GiftsView.swift */,
 				B3A2A56E27BBE7F7003ECA3B /* GiftsViewModel.swift */,
 			);
 			path = GiftsView;
@@ -405,7 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3A2A57327BBE7F7003ECA3B /* GiftsBoxView.swift in Sources */,
+				B3A2A57327BBE7F7003ECA3B /* GiftsView.swift in Sources */,
 				931457CF27BA4AF3007F2EAA /* PublicBoardViewModel.swift in Sources */,
 				93015ABE27AD39780061E9DC /* MainViewController.swift in Sources */,
 				933533B427BD579700AA6ED7 /* IfAndOnlyIfOneTapModifier.swift in Sources */,
@@ -413,9 +413,9 @@
 				9373076D27BCEAA600B9006F /* ThinBlurBackground.swift in Sources */,
 				9388EF5127B7C419007000E4 /* VideoPlayerManager.swift in Sources */,
 				93105E7427BE2D8F00534A5A /* URLImage.swift in Sources */,
-				B3A2A57227BBE7F7003ECA3B /* GiftsModel.swift in Sources */,
 				93015ABC27AD39780061E9DC /* SceneDelegate.swift in Sources */,
 				9388EF4927B78B91007000E4 /* Constant.swift in Sources */,
+				9346264127BF9E2F00EC94C8 /* Gift.swift in Sources */,
 				9388EF3B27B65989007000E4 /* Extension.swift in Sources */,
 				931457D527BBB460007F2EAA /* AutoFitTextFieldView.swift in Sources */,
 				B3A2A57127BBE7F7003ECA3B /* GiftsViewModel.swift in Sources */,

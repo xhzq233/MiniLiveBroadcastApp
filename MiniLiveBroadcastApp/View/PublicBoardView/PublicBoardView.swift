@@ -15,11 +15,12 @@ struct PublicBoardView: View {
         self.model.delegate = giftsViewModel
     }
 
+    //MARK: models
     @ObservedObject var model: PublicBoardViewModel
     let textFieldModel: AutoFitTextFieldViewModel
     let giftsViewModel: GiftsViewModel = GiftsViewModel()
     let bulletChattingViewModel: BulletChattingViewModel = BulletChattingViewModel()
-    
+
     var body: some View {
         Group {
             if model.isVideoReady {  // use `if` to avoid pre load
@@ -41,13 +42,14 @@ struct PublicBoardView: View {
                     VStack {
                         topBar
                             .padding(.top, .topPadding)
-                        Spacer(minLength: .screenHeight / 4) //blank area
-                        GiftsBoxView(giftsViewModel)
+                        Spacer(minLength: .screenHeight / 4)  //blank area
+                        GiftsView(model: giftsViewModel)
                         BulletChattingView(model: bulletChattingViewModel)
                         bottomBar
                         ProgressView(value: model.progress)
-                            .padding(.bottomPadding)
+                            .padding(.bottom, .bottomPadding)
                     }
+                    .padding(.horizontalSpacing)
                 }
             }
         }
@@ -69,11 +71,18 @@ struct PublicBoardView: View {
         }
     }
 
+    //MARK: bottomBar
     var bottomBar: some View {
         HStack(spacing: .horizontalSpacing) {
             AutoFitTextFieldView(model: textFieldModel) { content in
                 //notice that content type is Bind<String>
-                bulletChattingViewModel.fire(Bullet(prefix: "", name: "xhzq233", content: content.wrappedValue))
+                bulletChattingViewModel.fire(
+                    Bullet(
+                        prefix: Bullets.prefixStrings.randomElement()!,
+                        sender: Users.instances.randomElement()!,
+                        content: content.wrappedValue
+                    )
+                )
                 content.wrappedValue = ""
             }
             Image(systemName: "suit.heart.fill")
@@ -83,16 +92,16 @@ struct PublicBoardView: View {
                 .foregroundColor(.pink)
                 .onTapGesture {
                     withAnimation {
-                        giftsViewModel.sendAGift()
+                        giftsViewModel.fire(Gifts.instances.randomElement()!)
                     }
                 }
                 .thinBlurBackground(shape: Circle())
             Image(systemName: "ellipsis.circle")
                 .thinBlurBackground(shape: Circle())
         }
-        .padding(.horizontal, 4)
     }
 
+    //MARK: topBar
     @State var isMoreShowed = true
     var topBar: some View {
         GeometryReader { geo in
@@ -116,7 +125,6 @@ struct PublicBoardView: View {
                         .padding(.horizontal, 2)
                 }
                 .background(.thinMaterial, in: Capsule())
-                .padding(.leading, .horizontalSpacing)
 
                 Spacer(minLength: size * 2)
                 HStack(spacing: .horizontalSpacing) {
@@ -130,7 +138,7 @@ struct PublicBoardView: View {
                         URLImage(urlString: model.config.avatar)
                             .frame(width: size)
                             .clipShape(Circle())
-                    }// use group to animate together
+                    }  // use group to animate together
                     .opacity(isMoreShowed ? 1 : 0)
                     .scaleEffect(isMoreShowed ? 1 : 0.5)
                     .offset(x: isMoreShowed ? 0 : size * 2, y: 0)
@@ -144,7 +152,7 @@ struct PublicBoardView: View {
                                 isMoreShowed.toggle()
                             }
                         }
-                }.padding(.trailing, .horizontalSpacing)
+                }
             }
         }
     }

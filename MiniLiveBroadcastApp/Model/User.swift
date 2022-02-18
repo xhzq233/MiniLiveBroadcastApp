@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct User {
-    // TODO: 头像图片
-    var profilePicture: String = "tiktok"
-    var userName: String = "NaNName"
+typealias Users = [User]
+
+class User {
+    internal init(avatar: String, userName: String) {
+        self.avatar = avatar
+        self.userName = userName
+    }
+    let avatar: String
+    let userName: String
 }

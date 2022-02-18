@@ -53,3 +53,9 @@ extension Collection{
         return isValidIndex ? self[index] : nil
     }
 }
+
+extension FixedWidthInteger{
+    var byteArray:[UInt8] {
+        withUnsafeBytes(of: self.bigEndian, Array.init)
+    }
+}

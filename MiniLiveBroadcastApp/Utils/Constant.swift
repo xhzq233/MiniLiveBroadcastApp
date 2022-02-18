@@ -25,7 +25,6 @@ extension CGFloat {
     static let horizontalSpacing = CGFloat(6)
 }
 
-
 extension String {
 
     static let PageCellIdentifier = "PageCell"
@@ -43,6 +42,24 @@ extension ScrollPageCellConfigure {
 
     static let bilibiliPersonAvatar =
         "https://i0.hdslb.com/bfs/face/eb6a64203e088fb08ab447d75c1842e440611cba.jpg@240w_240h_1c_1s.webp"
+
+    static let genshinAyaka = "https://s1.zerochan.net/Ayaka.(Genshin.Impact).600.3144723.jpg"
+
+    static let raidenShogun1 =
+        "https://progameguides.com/wp-content/uploads/2021/07/Genshin-Impact-Character-Raiden-Shogun-1.jpg"
+
+    static let raidenShogun2 = "https://s1.zerochan.net/Raiden.Shogun.600.3422063.jpg"
+
+    static let yae = "https://staticg.sportskeeda.com/editor/2021/04/67d38-16189431025087.png"
+
+    static let avatars = [
+        titokAvatar,
+        bilibiliPersonAvatar,
+        genshinAyaka,
+        raidenShogun1,
+        raidenShogun2,
+        yae,
+    ]
 
     static let localVideo = "file:///Users/xhz/Desktop/background.nosync/%E5%9B%8Dfin.mp4"
 
@@ -67,8 +84,44 @@ extension ScrollPageCellConfigure {
             title: "Video \(i)",
             previewImage: titokAvatar,
             video: videos.randomElement() ?? localVideo,
-            avatar: bilibiliPersonAvatar,
-            recommend: titokAvatar
+            avatar: avatars.randomElement() ?? bilibiliPersonAvatar,
+            recommend: avatars.randomElement() ?? bilibiliPersonAvatar
         )
     }
+}
+
+extension Gifts {
+    static let instances: Self =
+        Users.instances.map { user in
+            Gift(sender: user, giftID: 0)
+        }
+}
+
+extension Bullets {
+    static let prefixStrings = [
+        "⚽️7 ",
+        "🥎4 ",
+        "🎱3 ",
+        "🏐2 ",
+        "🏀1 ",
+        "🐤6 ",
+        "🐶5 ",
+    ]
+}
+
+extension Users {
+
+    static let names = [
+        "xhzq233",
+        "Maihh",
+        "TikTok",
+        "Yae",
+        "RaidenShogun",
+        "Ayaka",
+    ]
+
+    static let instances: Self =
+        ScrollPageCellConfigure.avatars.map { str in
+            User(avatar: str, userName: names.randomElement()!)
+        }
 }
