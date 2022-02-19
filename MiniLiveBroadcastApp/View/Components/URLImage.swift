@@ -16,6 +16,8 @@ struct URLImage: View {
                 // Displays the loaded image.
             } else if phase.error != nil {
                 Text(phase.error.debugDescription)
+                    .font(.caption2)
+                    .fixedSize()
                     .background(Color.red)  // Indicates an error.
             } else {
                 ProgressView()

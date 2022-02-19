@@ -72,7 +72,7 @@ class IfAndOnlyIfOneTapView: UIView {
                 RunLoop.current.add(timer, forMode: .default)
             }
         } else {
-            //cancel
+            //if double hit , cancel
             timer?.invalidate()
             addHand(at: point)
             onMoreTap(point)

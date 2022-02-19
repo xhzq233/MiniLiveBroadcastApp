@@ -29,15 +29,10 @@ class ScrollPageViewCell: UITableViewCell {
     //default presenting image when view appear
     private let preview = UIImageView(image: UIImage(systemName: .LoadingSystemImage))
     
-    /// dispose player before reuse
+
     override func prepareForReuse() {
         super.prepareForReuse()
-//        title.text = .LoadingTitle
         preview.image = UIImage(systemName: .LoadingSystemImage)
-    }
-
-    deinit {
-        print("deinit!! \(config.title)")
     }
 
     func setConfigure(config: ScrollPageCellConfigure) {

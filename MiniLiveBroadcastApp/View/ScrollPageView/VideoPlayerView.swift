@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// wrapped into swift ui
 struct VideoPlayerView: UIViewRepresentable {
     let videoManager: VideoPlayerManager
     func updateUIView(_ uiView: UIViewType, context: Context) {

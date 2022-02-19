@@ -32,10 +32,10 @@ struct Gift: Identifiable {
     var giftURL: String {
         Self.id2url[giftID] ?? ScrollPageCellConfigure.bilibiliPersonAvatar
     }
-    
-    static let id2url:[Int:String] = {
-        var dict:[Int:String] = [:]
-        for (index,str) in ScrollPageCellConfigure.avatars.enumerated(){
+
+    static let id2url: [Int: String] = {
+        var dict: [Int: String] = [:]
+        for (index, str) in ScrollPageCellConfigure.avatars.enumerated() {
             dict[index] = str
         }
         return dict
@@ -64,7 +64,7 @@ struct Gift: Identifiable {
 
     /// copied item
     ///
-    /// in case have been refreshedTime when initialize
+    /// in case have been `refreshedTime` when initialize
     var copy: Self {
         var gift = Gift(sender: sender, giftID: giftID, count: count)
         gift.refreshTime()

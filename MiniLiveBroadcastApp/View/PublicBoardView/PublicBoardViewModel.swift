@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//used on reset another view model 
 protocol PublicBoardViewPageChangedDelegate: AnyObject {
     func onPageDidChanged()
     func onPageEndDisplay()
@@ -73,6 +74,7 @@ class PublicBoardViewModel: ObservableObject {
     }
 }
 
+//MARK: VideoPlayerDelegate
 extension PublicBoardViewModel: VideoPlayerDelegate {
     func onProgressUpdate(current: CGFloat, total: CGFloat) {
         let temp = current / total

@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import UIKit
 import SnapKit
+import UIKit
 
 extension UIView {
     func setFilledConstraint(in view: UIView) {
-        self.snp.makeConstraints{
+        self.snp.makeConstraints {
             $0.top.equalTo(view)
             $0.left.equalTo(view)
             $0.right.equalTo(view)
@@ -21,24 +21,24 @@ extension UIView {
 }
 
 extension UIViewController {
-    func embed(_ viewController:UIViewController){
+    func embed(_ viewController: UIViewController) {
         viewController.willMove(toParent: self)
-//        viewController.view.frame = view.bounds
-//        view.addSubview(viewController.view)
+        //        viewController.view.frame = view.bounds
+        //        view.addSubview(viewController.view)
         self.addChild(viewController)
         viewController.didMove(toParent: self)
     }
 }
 
 extension UIImageView {
-    func loadUrlImage(from str:String, completion: (()->Void)? = nil)  {
+    func loadUrlImage(from str: String, completion: (() -> Void)? = nil) {
         guard let url = URL(string: str) else { return }
-        URLSession.shared.dataTask(with: url) { data, _ , err in
-            guard let data = data,err == nil else {
+        URLSession.shared.dataTask(with: url) { data, _, err in
+            guard let data = data, err == nil else {
                 print(err!)
                 return
             }
-            DispatchQueue.main.async {[weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self?.image = UIImage(data: data)
                 completion?()
             }
@@ -46,7 +46,7 @@ extension UIImageView {
     }
 }
 
-extension Collection{
+extension Collection {
     //be like getOrNull()
     func getElement(at index: Index) -> Element? {
         let isValidIndex = index >= self.startIndex && index < self.endIndex
@@ -54,8 +54,9 @@ extension Collection{
     }
 }
 
-extension FixedWidthInteger{
-    var byteArray:[UInt8] {
+//ByteArray aka [UInt8]
+extension FixedWidthInteger {
+    var byteArray: [UInt8] {
         withUnsafeBytes(of: self.bigEndian, Array.init)
     }
 }

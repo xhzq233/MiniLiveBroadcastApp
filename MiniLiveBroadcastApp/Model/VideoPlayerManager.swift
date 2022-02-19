@@ -16,8 +16,8 @@ protocol VideoPlayerDelegate: AnyObject {
 }
 
 enum VideoPlayStatus: Equatable {
-    case none //not start yet
-    case loadingVideo //present preview time
+    case none  //not start yet
+    case loadingVideo  //present preview time
     case videoLoaded
     case fail(err: String)
 }
@@ -29,21 +29,21 @@ class VideoPlayerManager: NSObject {
     private var playerLooper: AVPlayerLooper?
     let playerLayer: AVPlayerLayer = {
         let layer = AVPlayerLayer()
-        layer.videoGravity = .resizeAspectFill //fill the screen
+        layer.videoGravity = .resizeAspectFill  //fill the screen
         return layer
     }()
-    
-    private(set) var status:VideoPlayStatus = .none
-    
+
+    private(set) var status: VideoPlayStatus = .none
+
     var isPlaying: Bool {
         rate != 0 && status == .videoLoaded
     }
-    
+
     //avoid reference cycle
     weak var delegate: VideoPlayerDelegate?
 
     func setPlayerSourceUrl(url: String) {
-        
+
         guard status == .none && !isPlaying else { return }
         if let sourceURL = URL(string: url) {
             asset?.cancelLoading()
@@ -53,7 +53,12 @@ class VideoPlayerManager: NSObject {
                 playerItem = AVPlayerItem(asset: asset)
                 player = AVQueuePlayer(playerItem: playerItem)
 
-                player?.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.new, .initial, .old], context: nil)
+                player?.addObserver(
+                    self,
+                    forKeyPath: #keyPath(AVPlayerItem.status),
+                    options: [.new, .initial, .old],
+                    context: nil
+                )
 
                 if let player = player, let playerItem = playerItem {
                     playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
@@ -97,9 +102,9 @@ class VideoPlayerManager: NSObject {
     /// pauseVideo if video is playing or is loading
     /// i.e ur video is loading while it isnt playing, causing that multi videos playing at a same time
     func pauseAndSeek2Zero() {
-//        if isPlaying || status == .loadingVideo {
-//            videoManager.pauseAndSeek2Zero()
-//        }
+        //        if isPlaying || status == .loadingVideo {
+        //            videoManager.pauseAndSeek2Zero()
+        //        }
         player?.pause()
         player?.seek(to: .zero)
     }
@@ -115,31 +120,36 @@ extension VideoPlayerManager {
     /// bugs?
     /// player item wont notify state changing sometime
     /// so i chose player
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey: Any]?,
+        context: UnsafeMutableRawPointer?
+    ) {
 
         if keyPath == #keyPath(AVPlayerItem.status) {
-            let status:VideoPlayStatus
-            
+            let status: VideoPlayStatus
+
             switch player?.status {
-                case .unknown:
-                    // Player item is not yet ready.
-                    status = .loadingVideo
-                case .readyToPlay:
-                    
-                    // why player is ready but asset?.isPlayable is false
-                    if asset?.isPlayable == true && playerItem?.error == nil && player?.error == nil {
-//                         Player item is ready to play.
-                        status = .videoLoaded
-                    } else {
-                        status = .fail(err: playerItem?.error?.localizedDescription ?? "Unknown Error")
-                    }
-                case .failed:
-                    status = .fail(err: player?.error?.localizedDescription ?? "Unknown Error")
-                    // Player item failed. See error.
-                case .none:
-                    status = .fail(err: "nil value")
-                @unknown default:
-                    status = .none
+            case .unknown:
+                // Player item is not yet ready.
+                status = .loadingVideo
+            case .readyToPlay:
+
+                // why player is ready but asset?.isPlayable is false
+                if asset?.isPlayable == true && playerItem?.error == nil && player?.error == nil {
+                    //                         Player item is ready to play.
+                    status = .videoLoaded
+                } else {
+                    status = .fail(err: playerItem?.error?.localizedDescription ?? "Unknown Error")
+                }
+            case .failed:
+                status = .fail(err: player?.error?.localizedDescription ?? "Unknown Error")
+            // Player item failed. See error.
+            case .none:
+                status = .fail(err: "nil value")
+            @unknown default:
+                status = .none
             }
             self.status = status
             delegate?.onPlayItemStatusUpdate(status: status)
@@ -149,7 +159,10 @@ extension VideoPlayerManager {
     }
 
     private func addProgressObserver() {
-        timeObserverToken = player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: .main) { [weak self] time in
+        timeObserverToken = player?.addPeriodicTimeObserver(
+            forInterval: CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC)),
+            queue: .main
+        ) { [weak self] time in
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(self?.playerItem?.duration ?? CMTime())
             self?.delegate?.onProgressUpdate(current: CGFloat(current), total: CGFloat(total))

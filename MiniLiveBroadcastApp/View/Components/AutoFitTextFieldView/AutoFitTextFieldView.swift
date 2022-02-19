@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-typealias ReturnCallBack = (_ content:Binding<String>) -> Void
+//using binding can change it to any value
+typealias ReturnCallBack = (_ content: Binding<String>) -> Void
 
 struct AutoFitTextFieldView: View {
 
     @ObservedObject var model: AutoFitTextFieldViewModel
-    let returnCallBack:ReturnCallBack
-    @State var edittingText:String = ""
-    
+    let returnCallBack: ReturnCallBack
+    @State var edittingText: String = ""
+
     var body: some View {
         ZStack(alignment: .trailing) {
             TextField(String.PublicBoardTextFieldHint, text: $edittingText)

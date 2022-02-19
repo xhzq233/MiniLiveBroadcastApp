@@ -59,7 +59,7 @@ extension ScrollPageView: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ScrollPageView: UIScrollViewDelegate {
-    //结束页面的滑动
+    //EndDecelerating
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         //MARK: video load
 

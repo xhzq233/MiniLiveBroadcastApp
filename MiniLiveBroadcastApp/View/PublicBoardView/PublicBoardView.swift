@@ -15,15 +15,15 @@ struct PublicBoardView: View {
         self.model.delegate = giftsViewModel
 
         //MARK: test
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
-            self.bulletChattingViewModel.fire(
-                Bullet(
-                    prefix: Bullet.prefixStrings.randomElement()!,
-                    sender: User.instances.randomElement()!,
-                    content: "2333"
-                )
-            )
-        }
+//        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
+//            self.bulletChattingViewModel.fire(
+//                Bullet(
+//                    prefix: Bullet.prefixStrings.randomElement()!,
+//                    sender: User.instances.randomElement()!,
+//                    content: "2333"
+//                )
+//            )
+//        }
     }
 
     //MARK: models
