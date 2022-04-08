@@ -55,7 +55,7 @@ class VideoPlayerManager: NSObject {
 
                 player?.addObserver(
                     self,
-                    forKeyPath: #keyPath(AVPlayerItem.status),
+                    forKeyPath: #keyPath(AVQueuePlayer.status),
                     options: [.new, .initial, .old],
                     context: nil
                 )

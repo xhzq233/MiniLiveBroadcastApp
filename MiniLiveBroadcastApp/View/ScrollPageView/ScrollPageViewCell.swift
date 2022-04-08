@@ -78,6 +78,12 @@ class ScrollPageViewCell: UITableViewCell {
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
         }
+        // equal to this...
+//        title.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            title.topAnchor.constraint(equalTo: self.topAnchor)
+//        ])
+        
         title.text = .LoadingTitle
     }
     

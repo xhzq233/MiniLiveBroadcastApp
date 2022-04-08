@@ -29,7 +29,6 @@ struct AutoFitTextFieldView: View {
         }
         .offset(x: 0, y: -model.keyBoardBottomPadding)
         .onAppear {
-            // kvo
             NotificationCenter.default.addObserver(
                 model,
                 selector: #selector(model.keyboardWillShow),
