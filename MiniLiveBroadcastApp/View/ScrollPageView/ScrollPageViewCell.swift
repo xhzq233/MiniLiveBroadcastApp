@@ -32,6 +32,7 @@ class ScrollPageViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        print("-----prepareForReuse-----")
         preview.image = UIImage(systemName: .LoadingSystemImage)
     }
 
@@ -49,11 +50,15 @@ class ScrollPageViewCell: UITableViewCell {
     override func tintColorDidChange() {
         title.textColor = tintColor
     }
+    
+    deinit {
+        print("-----deinit-----")
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .black
-        
+        print("-----init-----")
         // preview
         contentView.addSubview(preview)
         preview.contentMode = .scaleAspectFit

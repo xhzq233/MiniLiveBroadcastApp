@@ -94,7 +94,7 @@ class IfAndOnlyIfOneTapView: UIView {
 
         likeImageView.transform = CGAffineTransform(rotationAngle: -Self.angle).scaledBy(x: 0.8, y: 0.8)
 
-        UIView.animate(withDuration: Self.secondStageAnimeTime) {
+        UIView.animate(withDuration: Self.firstStageAnimeTime) {
             likeImageView.transform = CGAffineTransform.init(rotationAngle: Self.angle)
         } completion: { _ in
             UIView.animate(

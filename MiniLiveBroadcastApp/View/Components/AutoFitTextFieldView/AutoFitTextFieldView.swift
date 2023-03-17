@@ -18,7 +18,8 @@ struct AutoFitTextFieldView: View {
 
     var body: some View {
         ZStack(alignment: .trailing) {
-            TextField(String.PublicBoardTextFieldHint, text: $edittingText)
+            let extractedExpr = TextField(String.PublicBoardTextFieldHint, text: $edittingText)
+            extractedExpr
                 .onSubmit {
                     returnCallBack($edittingText)
                 }
@@ -28,31 +29,5 @@ struct AutoFitTextFieldView: View {
                 .padding()
         }
         .offset(x: 0, y: -model.keyBoardBottomPadding)
-        .onAppear {
-            NotificationCenter.default.addObserver(
-                model,
-                selector: #selector(model.keyboardWillShow),
-                name: UIResponder.keyboardWillShowNotification,
-                object: nil
-            )
-            NotificationCenter.default.addObserver(
-                model,
-                selector: #selector(model.keyboardWillDisappear),
-                name: UIResponder.keyboardWillHideNotification,
-                object: nil
-            )
-        }
-        .onDisappear {
-            NotificationCenter.default.removeObserver(
-                model,
-                name: UIResponder.keyboardWillShowNotification,
-                object: nil
-            )
-            NotificationCenter.default.removeObserver(
-                model,
-                name: UIResponder.keyboardWillHideNotification,
-                object: nil
-            )
-        }
     }
 }

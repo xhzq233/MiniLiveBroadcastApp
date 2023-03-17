@@ -11,8 +11,8 @@ struct PublicBoardView: View {
 
     init(model: PublicBoardViewModel, textFieldModel: AutoFitTextFieldViewModel) {
         self.textFieldModel = textFieldModel
-        self.model = model
-        self.model.delegate = giftsViewModel
+        self.viewModel = model
+        self.viewModel.delegate = giftsViewModel
 
         //MARK: test
 //        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
@@ -27,17 +27,17 @@ struct PublicBoardView: View {
     }
 
     //MARK: models
-    @ObservedObject private var model: PublicBoardViewModel
+    @ObservedObject private var viewModel: PublicBoardViewModel
     private let textFieldModel: AutoFitTextFieldViewModel
     private let giftsViewModel: GiftsViewModel = GiftsViewModel()
     private let bulletChattingViewModel: BulletChattingViewModel = BulletChattingViewModel()
 
     //MARK: Layers
     private var playerLayer: some View {
-        VideoPlayerView(videoManager: model.videoManager)
+        VideoPlayerView(videoManager: viewModel.videoManager)
             .ifAndOnlyIfOneTap { _ in
                 withAnimation {
-                    model.updatePlayerState()
+                    viewModel.updatePlayerState()
                 }
             } onMoreTap: { _ in
 
@@ -45,8 +45,8 @@ struct PublicBoardView: View {
             .overlay(
                 Image(systemName: "play.fill")
                     .font(.system(size: .iconSize))
-                    .opacity(model.videoManager.isPlaying ? 0 : 0.7)  //animatable
-                    .scaleEffect(model.videoManager.isPlaying ? 1 : 3)
+                    .opacity(viewModel.videoManager.isPlaying ? 0 : 0.7)  //animatable
+                    .scaleEffect(viewModel.videoManager.isPlaying ? 1 : 3)
             )
     }
     private var giftChooser:some View {
@@ -68,11 +68,11 @@ struct PublicBoardView: View {
             GiftsView(model: giftsViewModel)
             BulletChattingView(model: bulletChattingViewModel)
             bottomBar
-            if model.isShowGiftChooser {
+            if viewModel.isShowGiftChooser {
                 giftChooser
                     .transition(.move(edge: .bottom).combined(with: .opacity).combined(with: .scale))
             }
-            ProgressView(value: model.progress)
+            ProgressView(value: viewModel.progress)
         }
         .padding(.vertical, 30)
         .padding(.horizontal, 10)
@@ -80,7 +80,7 @@ struct PublicBoardView: View {
 
     var body: some View {
         Group {
-            if model.isVideoReady {  // use `if` to avoid pre load
+            if viewModel.isVideoReady {  // use `if` to avoid pre load
                 ZStack {
                     playerLayer
                     controllerLayer
@@ -88,16 +88,16 @@ struct PublicBoardView: View {
             }
         }
         .ignoresSafeArea()
-        .alert(isPresented: $model.isVideoLoadFailed) {
+        .alert(isPresented: $viewModel.isVideoLoadFailed) {
             Alert(
                 title: Text("Video Load Failed"),
-                message: Text(model.errorDescription),
+                message: Text(viewModel.errorDescription),
                 primaryButton: .default(
                     Text("Load Again"),
                     action: {
                         // reload
-                        model.onPageEndDisplay()
-                        model.onPageChanged()
+                        viewModel.onPageEndDisplay()
+                        viewModel.onPageChanged()
                     }
                 ),
                 secondaryButton: .cancel((Text("Ok")))
@@ -133,7 +133,7 @@ struct PublicBoardView: View {
                 .foregroundColor(.pink)
                 .onTapGesture {
                     withAnimation {
-                        model.isShowGiftChooser.toggle()
+                        viewModel.isShowGiftChooser.toggle()
                     }
                 }
                 .thinBlurBackground(shape: Circle())
@@ -148,23 +148,23 @@ struct PublicBoardView: View {
             let size = geo.size.width * DrawingConstants.imageSizeFactor
             HStack(spacing: .horizontalSpacing) {
                 HStack {
-                    URLImage(urlString: model.config.avatar)
+                    URLImage(urlString: viewModel.config.avatar)
                         .frame(width: size, height: size)
                         .clipShape(Circle())
-                    Text(model.config.title)
+                    Text(viewModel.config.title)
                         .font(.caption2)
                         .lineLimit(1)
-                    Text( model.isFollowed ? String.UnFollow : String.Follow)
+                    Text( viewModel.isFollowed ? String.UnFollow : String.Follow)
                         .onTapGesture {
-                            model.isFollowed.toggle()
+                            viewModel.isFollowed.toggle()
                         }
                         .font(.caption)
-                        .foregroundColor(model.isFollowed ? .red :.white)
+                        .foregroundColor(viewModel.isFollowed ? .red :.white)
                         .frame(width: size * 1.2)
                         .lineLimit(1)
                         .padding(2)
                         //this is margin, inner view padding to container view
-                        .background(model.isFollowed ? .gray : .red, in: Capsule())
+                        .background(viewModel.isFollowed ? .gray : .red, in: Capsule())
                         .padding(.horizontal, 2)
                 }
                 .background(.thinMaterial, in: Capsule())
@@ -172,23 +172,23 @@ struct PublicBoardView: View {
                 Spacer(minLength: size * 2)
                 HStack(spacing: .horizontalSpacing) {
                     Group {
-                        URLImage(urlString: model.config.avatar)
-                        URLImage(urlString: model.config.avatar)
-                        URLImage(urlString: model.config.avatar)
+                        URLImage(urlString: viewModel.config.avatar)
+                        URLImage(urlString: viewModel.config.avatar)
+                        URLImage(urlString: viewModel.config.avatar)
                     }  // use group to animate together
                     .frame(width: size)
                     .clipShape(Circle())
-                    .opacity(model.isMoreShowed ? 1 : 0)
-                    .scaleEffect(model.isMoreShowed ? 1 : 0.5)
-                    .offset(x: model.isMoreShowed ? 0 : size * 2, y: 0)
+                    .opacity(viewModel.isMoreShowed ? 1 : 0)
+                    .scaleEffect(viewModel.isMoreShowed ? 1 : 0.5)
+                    .offset(x: viewModel.isMoreShowed ? 0 : size * 2, y: 0)
                     Image(systemName: "multiply")
-                        .rotationEffect(model.isMoreShowed ? .radians(.pi / 2) : .zero)
+                        .rotationEffect(viewModel.isMoreShowed ? .radians(.pi / 2) : .zero)
                         .thinBlurBackground(shape: Circle())
                         .frame(width: size)
                         .onTapGesture {
                             // explicit animation
                             withAnimation {
-                                model.isMoreShowed.toggle()
+                                viewModel.isMoreShowed.toggle()
                             }
                         }
                 }

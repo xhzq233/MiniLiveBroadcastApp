@@ -128,3 +128,8 @@ extension User {
             User(avatar: str, userName: names.randomElement()!)
         }
 }
+
+
+extension Notification.Name {
+    static let giftMessage = Notification.Name("GiftMessage")
+}
